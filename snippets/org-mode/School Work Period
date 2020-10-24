@@ -1,0 +1,15 @@
+# key: schoolworkperiod
+# name: School Work Period
+# --
+****  `(org-format-time-string (org-time-stamp-format t) (org-current-time 60))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* 60 60)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 2)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 3)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 4)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 5)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 6)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 7)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 8)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 9)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 10)))`
+****  `(org-format-time-string (org-time-stamp-format t) (time-add (org-current-time 60) (* (* 60 60) 11)))`

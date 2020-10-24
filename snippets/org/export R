@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: export R
+# uuid:
+# key: <Rexport
+# condition: t
+# --
+#+PROPERTY: header-args:R :exports both :eval never-export

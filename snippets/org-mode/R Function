@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: R Function
+# uuid:
+# key: <rfun
+# condition: t
+# --
+#+BEGIN_SRC R :session "global" :results output
+$1 <- function($2){
+   $0
+}
+#+END_SRC

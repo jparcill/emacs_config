@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: org latex inline
+# key: $
+# --
+$$0$

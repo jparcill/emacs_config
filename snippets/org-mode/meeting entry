@@ -1,0 +1,15 @@
+# key: <meeting
+# name: meeting entry
+# --
+* Meeting
+** Preparation
+*** What is the main meeting goal?
+$1
+*** What is your personal motivations going into the meeting?
+$2
+*** What are the other people's motivations going into the meeting?
+$3
+*** Main Prep Notes
+$4
+** Notes
+$0

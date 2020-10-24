@@ -1,0 +1,7 @@
+# key: <pycell
+# name: python cell
+# condition: t
+# --
+#+BEGIN_SRC python :session "global_py" :results output :tangle yes :comments org
+$1
+#+END_SRC

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ox-hugo images
+# uuid:
+# key: trigger-key
+# condition: t
+# --
+# Org source
+#+attr_html: :width 500
+#+caption: $0

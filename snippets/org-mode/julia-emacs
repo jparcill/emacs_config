@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: julia-emacs
+# uuid:
+# key: <jul
+# condition: t
+# --
+
+#+begin_src jupyter-julia :session jup-julia :async yes
+$0
+#+end_src

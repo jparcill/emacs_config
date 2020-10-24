@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ox-hugo blog
+# key: blog_post
+# --
+:PROPERTIES:
+:EXPORT_TITLE: $1
+:EXPORT_FILE_NAME: .md
+:END:

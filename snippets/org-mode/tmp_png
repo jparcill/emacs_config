@@ -1,0 +1,4 @@
+# key: tmp.png
+# name: tmp_png
+# --
+`(format-time-string "/tmp/%Y-%m-%d-%hh-%mm-%ss.png")`

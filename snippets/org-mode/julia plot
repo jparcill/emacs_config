@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: julia plot
+# uuid:
+# key: <jlplot
+# condition: t
+# --
+#+header :width 600 :height 600
+#+BEGIN_SRC julia :file `(format-time-string "/tmp/%Y-%m-%d-%hh-%mm-%ss.png")` :session "global-julia" :results graphics file
+$1
+#+END_SRC

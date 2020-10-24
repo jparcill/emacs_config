@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Hugo Image
+# key: <hugoimg
+# --
+# Org source
+#+attr_html: :width $1
+#+caption: $0

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Tangle Subtree
+# uuid:
+# key: trigger-key
+# condition: t
+# --
+:PROPERTIES:
+:header-args: :tangle $1 :comments $0
+:END:

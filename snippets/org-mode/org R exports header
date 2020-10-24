@@ -1,0 +1,7 @@
+# key: trigger-key
+# name: org R exports header
+# condition: t
+# --
+#+AUTHOR: Jared Arcilla
+#+DATE: `(format-time-string "%Y-%m-%d")`$0
+#+PROPERTY: header-args :exports both :eval never-export

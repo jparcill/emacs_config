@@ -1,0 +1,24 @@
+#+TITLE: Elfeed
+
+* Blogs :elfeed:
+** Tech :tech:
+*** Emacs :emacs:
+**** https://sachachua.com/blog/feed/
+**** https://planet.emacslife.com/atom.xml
+**** https://emacsnyc.org/atom.xml
+*** Languages :lang:
+**** Julia
+***** https://julialang.org/feed.xml
+***** https://www.juliabloggers.com/feed/
+** Art :art:
+**** Generative Art
+***** https://feeds.feedburner.com/Blog-Artnome
+** Math :math:
+*** Statistics :stats:
+**** http://www.stochasticlifestyle.com/feed/
+*** Machine Learning :ml:
+**** https://jack-clark.net/
+**** https://medium.com/feed/@racheltho
+
+** Friends :friends:
+*** https://www.blog.allanmukundi.com/feed.xml

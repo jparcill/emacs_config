@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: R cell
+# key: <rcell
+# --
+#+BEGIN_SRC R :session "global" :results output
+$1
+#+END_SRC

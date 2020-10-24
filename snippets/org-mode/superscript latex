@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: superscript latex
+# key: ^
+# --
+^{$0}

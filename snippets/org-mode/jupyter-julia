@@ -1,0 +1,7 @@
+# key: <jl
+# name: jupyter-julia
+# condition: t
+# --
+#+begin_src jupyter-julia :session jup-julia :async yes
+$0
+#+end_src

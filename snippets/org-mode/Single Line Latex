@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Single Line Latex
+# uuid:
+# key: $
+# condition: t
+# --
+$$0$

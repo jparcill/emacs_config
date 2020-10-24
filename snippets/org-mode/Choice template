@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Choice template
+# key: <choice
+# --
+* Choice Template
+** What is the Choice?
+$1
+** Where are you being pulled towards?
+$2
+** What is your gut instict?
+$3
+** Are there people you are looking to please? What would your choice be without them
+$4
+** Weigh your options probabilistically
+$5
