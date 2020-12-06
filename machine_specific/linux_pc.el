@@ -35,7 +35,7 @@
   (exwm-input-set-key (kbd "<s-tab> n") #'tab-bar-new-tab)
   (exwm-input-set-key (kbd "<s-tab> d") #'tab-bar-close-tab)
   (exwm-input-set-key (kbd "<s-tab> r") #'tab-bar-rename-tab)
-  (exwm-input-set-key (kbd "<menu>") 'jparcill/hydra-window-nav/body)
+  (exwm-input-set-key (kbd "s-m") 'jparcill/hydra-window-nav/body)
 
 
   ;; wifi
@@ -59,19 +59,6 @@
                             (async-shell-command
                              (format "nmcli device wifi connect %s" (shell-quote-argument
                                                                      network))))))))
-
-  (defun volume-up ()
-    "linux volume up"
-    (interactive)
-    (shell-command "pactl set-sink-volume 0 +15%")
-    (shell-command "pactl set-sink-volume 1 +15%")
-    )
-  (defun volume-down ()
-    "linux volume down"
-    (interactive)
-    (shell-command "pactl set-sink-volume 0 -15%")
-    (shell-command "pactl set-sink-volume 1 -15%")
-    )
 
   ;; C-c l will be for linux shortcuts
   (exwm-input-set-key (kbd "C-c l w") #'counsel-network-manager)

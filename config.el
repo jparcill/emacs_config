@@ -23,8 +23,8 @@
 ;; Aesthetics
 ;; -----------
 ;; Font
-(setq doom-font (font-spec :family "Consola Mono" :size 16)
-      doom-variable-pitch-font (font-spec :family "Raleway" :size 20))
+(setq doom-font (font-spec :family "Julia Mono" :size 16)
+      doom-variable-pitch-font (font-spec :family "Raleway" :size 16))
 
 ;; Linum
 (setq display-line-numbers-type 'relative)
@@ -33,7 +33,7 @@
 (add-to-list 'custom-theme-load-path "~/.doom.d/themes/")
 (setq doom-theme 'doom-nord-light)
 ;; nightmode theme
-(run-at-time "18:00" nil (lambda ()
+(run-at-time "21:00" nil (lambda ()
                            (progn (load-theme 'doom-rouge)
                                   (start-process-shell-command "redshift" "redshift" "redshift -x; redshift -O 1700")
                                   )))
@@ -198,13 +198,28 @@
 
 (use-package! org-agenda
   :defer
+  :init
+  (setq org-agenda-files (list
+                          (concat org-file-path "emacs_todos.org")
+                          (concat org-file-path "linux_todos.org")
+                          (concat org-file-path "projects.org")
+                          (concat org-file-path "reading_list.org")
+                          (concat org-file-path "monthly_habits.org")
+                          (concat org-file-path "quarterly_habits.org")
+                          (concat org-file-path "personal.org")
+                          (concat org-file-path "daily_habits.org")
+                          (concat org-file-path "weekly_habits.org")
+                          "/home/jparcill/Sync/Org/20200908101858-pmath330.org"
+                          "/home/jparcill/Sync/Org/20200908101947-pmath340_elementary_number_theory.org"
+                          "/home/jparcill/Sync/Org/20200908130923-pmath331_applied_real_analysis.org"
+                          "/home/jparcill/Sync/Org/20200908102038-stat431.org"
+                          work-path
+                          (concat org-file-path "journal/")))
+
   :config
   (setq org-habit-show-habits-only-for-today t)
   ;; Org Agenda Files
-  (setq org-agenda-files (list
-                          org-file-path
-                          work-path
-                          (concat org-file-path "journal/")))
+
   ;; org agenda
   (setq org-agenda-time-grid
         (quote

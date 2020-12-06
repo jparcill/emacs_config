@@ -1,7 +1,5 @@
 # -*- mode: snippet -*-
 # name: fraction
-# uuid:
 # key: \frac
-# condition: t
 # --
-\frac{$1}{$0}
+\frac{$1}{$2}$0
