@@ -1,11 +1,14 @@
 ;;; org_conf.el -*- lexical-binding: t; -*-
 (setq org-export-with-section-numbers nil)
 (setq org-agenda-include-deadlines t)
+(setq org-agenda-dim-blocked-tasks 'invisible)
 (setq org-todo-keywords '((sequence
+                           "PROJ"
 		           "TODO"
 		           "NEXT(n)"
 		           "PROG(p!)"
 		           "WAIT(w@/!)"
+                           "SOMEDAY"
 		           "|"
 		           "DONE(d)"
 		           "CANCEL(c@)"
@@ -45,7 +48,30 @@
         ("k" "Journal sched entry" entry (function jparcill/org-journal-find-location)
          "* %? %^T\n%U" :empty-lines 1)
         ("m" "Morning Journal entry" entry (function jparcill/org-journal-find-location)
-         "* Morning Entry \n** Looking Forward To %? \n** Day Plan \n** Determinations :determ:" :empty-lines 1)
+         "* Morning Entry
+** Checklist
+   - [ ] Make bed meditatively and 5 min clean
+   - [ ] Put on this week's album
+    [[file:../20200904120153-album_of_the_week.org][Album of the Week]]
+   - [ ] Workout related Stretch
+   - [ ] Ergonomic stretch
+   - [ ] Clean out phone.org
+    [[file:../phone.org][phone.org   ]]
+   - [ ] Restructure TODOs
+   - [ ] journal and day plan on other side
+     - plan tips:
+       - don't put mentally straining todos after working out or eating.
+       - mentally chill stuff includes:
+         - relaxing reading
+         - article reading
+         - art
+   - [ ] Review whole month
+   - [ ] Yesterday's journal if not done
+   - [ ] Upload any images to journal
+   - [ ] Refresh phone orgzly
+** Looking Forward To %?
+** Day Plan
+** Determinations :determ:" :empty-lines 1)
         ("n" "Night Journal entry" entry (function jparcill/org-journal-find-location)
          "* My Day\n%U")
         ))

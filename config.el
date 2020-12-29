@@ -24,7 +24,7 @@
 ;; -----------
 ;; Font
 (setq doom-font (font-spec :family "Julia Mono" :size 16)
-      doom-variable-pitch-font (font-spec :family "Raleway" :size 16))
+      doom-variable-pitch-font (font-spec :family "Bookerly" :size 19))
 
 ;; Linum
 (setq display-line-numbers-type 'relative)
@@ -34,9 +34,9 @@
 (setq doom-theme 'doom-nord-light)
 ;; nightmode theme
 (run-at-time "21:00" nil (lambda ()
-                           (progn (load-theme 'doom-rouge)
-                                  (start-process-shell-command "redshift" "redshift" "redshift -x; redshift -O 1700")
-                                  )))
+                           ;;(progn (load-theme 'doom-rouge)
+                           (start-process-shell-command "redshift" "redshift" "redshift -x; redshift -O 1700")
+                           ))
 
 
 ;; Taken from https://tecosaur.github.io/emacs-config/config.html
@@ -91,6 +91,9 @@
 
 (use-package! org-noter
   :after pdf-tools
+  :init
+  (map! :map org-noter-doc-mode-map "i" #'org-noter-insert-note)
+  (map! :map org-noter-notes-mode-map "C-c l i" #'org-noter-insert-note)
   )
 
 (use-package! ox-hugo
@@ -124,7 +127,10 @@
   :hook (prog-mode . hl-todo-mode)
   :config
   (setq hl-todo-keyword-faces
-        `(("TODO"  . ,(face-foreground 'warning))
+        `(
+          ("PROJ"  . ,(face-foreground 'error))
+          ("SOMEDAY"  . ,(face-foreground 'warning))
+          ("TODO"  . ,(face-foreground 'warning))
           ("PROG" . ,(face-foreground 'error))
           ("NEXT" . ,(face-foreground 'error))
           ("WAIT" . ,(face-foreground 'warning))
@@ -200,20 +206,14 @@
   :defer
   :init
   (setq org-agenda-files (list
-                          (concat org-file-path "emacs_todos.org")
-                          (concat org-file-path "linux_todos.org")
                           (concat org-file-path "projects.org")
-                          (concat org-file-path "reading_list.org")
                           (concat org-file-path "monthly_habits.org")
                           (concat org-file-path "quarterly_habits.org")
                           (concat org-file-path "personal.org")
                           (concat org-file-path "daily_habits.org")
                           (concat org-file-path "weekly_habits.org")
-                          "/home/jparcill/Sync/Org/20200908101858-pmath330.org"
-                          "/home/jparcill/Sync/Org/20200908101947-pmath340_elementary_number_theory.org"
-                          "/home/jparcill/Sync/Org/20200908130923-pmath331_applied_real_analysis.org"
-                          "/home/jparcill/Sync/Org/20200908102038-stat431.org"
                           work-path
+                          (concat org-file-path "projects/2021/")
                           (concat org-file-path "journal/")))
 
   :config
@@ -268,32 +268,31 @@
                                                        (:todo "GOAL")
                                                        (:discard (:habit))
                                                        ))))))
-                                     ("r" "Super relaxed view"
-                                      ((agenda "" ((org-agenda-span 'day)
-                                                   (org-agenda-start-day "+0d")
-                                                   (org-agenda-overriding-header "")
+                                     ("r" "Main View"
+                                     ((agenda "" ((org-agenda-span 'day)
+                                                  (org-agenda-start-day "+0d")
+                                                  (org-agenda-overriding-header "")
+                                                  (org-super-agenda-groups
+                                                   '((:name "Today"
+                                                      :time-grid t
+                                                      :date today
+                                                      :order 1
+                                                      :scheduled today
+                                                      :todo "TODAY")))))
+                                      (alltodo "" ((org-agenda-overriding-header "")
                                                    (org-super-agenda-groups
-                                                    '((:name "Today"
-                                                       :time-grid t
-                                                       :date today
-                                                       :order 1
-                                                       :scheduled today
-                                                       :todo "TODAY")))))
-                                       (alltodo "" ((org-agenda-overriding-header "")
-                                                    (org-super-agenda-groups
-                                                     '((:todo "PROG")
-                                                       (:todo "NEXT")
-                                                       (:name "Important" :priority "A")
-                                                       (:name "Hobby" :tag "hobby")
-                                                       (:todo "RDING")
-                                                       (:todo "RDNOTE")
-                                                       (:todo "GOAL")
-                                                       (:todo "WAIT")
-                                                       (:habit)
-                                                       (:name "Other" :not (:tag "work"))
-                                                       ))))))
-                                     ("d" "Done View"
-                                      ((todo "DONE" ((org-agenda-view-columns-initially t)))))))
+                                                    '(
+                                                      (:discard (:habit))
+                                                      (:todo "PROJ")
+                                                      (:todo "PROG")
+                                                      (:todo "NEXT")
+                                                      (:todo "WAIT")
+                                                      (:name "Important" :priority "A")
+                                                      (:todo "GOAL")
+                                                      (:todo "TODO")
+                                                      (:discard (:todo "IDEA"))
+                                                      ))))))))
+
 
   :config
   (org-super-agenda-mode)
