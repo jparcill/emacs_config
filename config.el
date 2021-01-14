@@ -187,7 +187,7 @@
   :defer
   :init
   ;; org journal
-  (setq org-journal-dir (concat org-file-path "journal/"))
+  (setq org-journal-dir (concat org-file-path "journal/2021/"))
   (setq org-journal-file-type 'daily)
   (setq org-journal-file-format "%Y%m%d.org")
   (setq org-journal-date-format "%A, %B %d %Y")
@@ -210,11 +210,14 @@
                           (concat org-file-path "monthly_habits.org")
                           (concat org-file-path "quarterly_habits.org")
                           (concat org-file-path "personal.org")
+                          (concat org-file-path "school.org")
                           (concat org-file-path "daily_habits.org")
                           (concat org-file-path "weekly_habits.org")
+                          (concat org-file-path "reflections/2021_refl.org")
+                          (concat org-file-path "someday.org")
                           work-path
                           (concat org-file-path "projects/2021/")
-                          (concat org-file-path "journal/")))
+                          (concat org-file-path "journal/2021/")))
 
   :config
   (setq org-habit-show-habits-only-for-today t)
@@ -267,6 +270,7 @@
                                                        (:todo "RDNOTE")
                                                        (:todo "GOAL")
                                                        (:discard (:habit))
+                                                       (:discard (:todo "SOMEDAY"))
                                                        ))))))
                                      ("r" "Main View"
                                      ((agenda "" ((org-agenda-span 'day)
@@ -288,9 +292,10 @@
                                                       (:todo "NEXT")
                                                       (:todo "WAIT")
                                                       (:name "Important" :priority "A")
-                                                      (:todo "GOAL")
                                                       (:todo "TODO")
+                                                      (:todo "GOAL")
                                                       (:discard (:todo "IDEA"))
+                                                      (:discard (:todo "SOMEDAY"))
                                                       ))))))))
 
 

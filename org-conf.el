@@ -3,8 +3,8 @@
 (setq org-agenda-include-deadlines t)
 (setq org-agenda-dim-blocked-tasks 'invisible)
 (setq org-todo-keywords '((sequence
-                           "PROJ"
 		           "TODO"
+                           "PROJ"
 		           "NEXT(n)"
 		           "PROG(p!)"
 		           "WAIT(w@/!)"
@@ -33,15 +33,18 @@
 
 
 (setq org-capture-templates
-      `(("s" "Todo scheduled" entry (file ,(concat org-file-path "phone.org"))
-         "* TODO %? \nSCHEDULED: %^T\n%U" :empty-lines 1)
-        ("d" "Todo deadline" entry (file ,(concat org-file-path "phone.org"))
+      `(
+        ("t" "Todo" entry (file ,(concat org-file-path "personal.org"))
+         "* TODO %? \n%U" :empty-lines 1)
+        ("d" "Todo deadline" entry (file ,(concat org-file-path "personal.org"))
          "* TODO %? \nDEADLINE: %^T\n%U" :empty-lines 1)
-        ("w" "Wait deadline" entry (file ,(concat org-file-path "phone.org"))
+        ("w" "Wait deadline" entry (file ,(concat org-file-path "personal.org"))
          "* WAIT %? \nDEADLINE: %^T\n%U" :empty-lines 1)
         ("r" "Reading List" entry (file+olp ,(concat org-file-path "reading_list.org") "Catchall")
          "* RD %? \n%U" :empty-lines 1)
-        ("e" "Event" entry (file ,(concat org-file-path "phone.org"))
+        ("s" "Someday" entry (file+olp ,(concat org-file-path "someday.org") "Catchall")
+         "* SOMEDAY %? \n%U" :empty-lines 1)
+        ("e" "Event" entry (file ,(concat org-file-path "personal.org"))
          "* %? %^T\n%U" :empty-lines 1)
         ("j" "Journal entry" entry (function jparcill/org-journal-find-location)
          "* NEXT %?\n%U" :empty-lines 1)
@@ -52,7 +55,7 @@
 ** Checklist
    - [ ] Make bed meditatively and 5 min clean
    - [ ] Put on this week's album
-    [[file:../20200904120153-album_of_the_week.org][Album of the Week]]
+    [[file:../../20200904120153-album_of_the_week.org][Album of the Week]]
    - [ ] Workout related Stretch
    - [ ] Ergonomic stretch
    - [ ] Clean out phone.org
