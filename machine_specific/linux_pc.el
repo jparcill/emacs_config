@@ -38,33 +38,13 @@
   (exwm-input-set-key (kbd "s-m") 'jparcill/hydra-window-nav/body)
 
 
-  ;; wifi
-  (defvar counsel-network-manager-history nil
-    "Network manager history.")
-
-  (defun counsel-network-manager (&optional initial-input)
-    "Connect to wifi network."
-    (interactive)
-    (shell-command "nmcli device wifi rescan")
-    (let ((networks-list (s-split "\n" (shell-command-to-string "nmcli device wifi list"))))
-      (ivy-read "Select network" networks-list
-                :initial-input initial-input
-                :require-match t
-                :history counsel-network-manager-history
-                :sort nil
-                :caller 'counsel-network-manager
-                :action (lambda (line)
-                          (let ((network (car (s-split " " (s-trim (s-chop-prefix "*" line)) t))))
-                            (message "Connecting to \"%s\".." network)
-                            (async-shell-command
-                             (format "nmcli device wifi connect %s" (shell-quote-argument
-                                                                     network))))))))
-
+  (defun jparcill/tmp-screenshot ()
+      (interactive)
+      (start-process-shell-command "screenshot" "screenshot"  (format-time-string "scrot -s /tmp/%Y-%m-%d-%H:%M:%S.png"))
+    )
   ;; C-c l will be for linux shortcuts
-  (exwm-input-set-key (kbd "C-c l w") #'counsel-network-manager)
-  (exwm-input-set-key (kbd "C-c l =") #'volume-up)
-  (exwm-input-set-key (kbd "C-c l -") #'volume-down)
   (exwm-input-set-key (kbd "C-c g") 'counsel-search)
+  (exwm-input-set-key (kbd "C-c l s") 'jparcill/tmp-screenshot)
 
 
   (load! "~/.doom.d/machine_specific/exwm-conf.el")
@@ -82,9 +62,18 @@
   :after exwm
   )
 
+(use-package! mathpix
+  :config
+  (jparcill/mathpix-settings)
+  (setq mathpix-screenshot-method "scrot -s %s")
+  )
+
+
 (add-hook! 'exwm-edit-compose-hook (lambda () (funcall 'markdown-mode)))
 
 (setq async-shell-command-buffer 'new-buffer)
-(start-process-shell-command "jparcill-startup" "jparcill-startup" "sh ~/.doom.d/machine_specific/startup.sh")
 
-(add-hook! 'exwm-exit-hook (lambda () (kill-buffer "jparcill-startup")))
+
+;;(start-process-shell-command "jparcill-startup" "jparcill-startup" "sh ~/.doom.d/machine_specific/startup.sh")
+
+;;(add-hook! 'exwm-exit-hook (lambda () (kill-buffer "jparcill-startup")))

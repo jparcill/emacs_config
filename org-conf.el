@@ -2,6 +2,7 @@
 (setq org-export-with-section-numbers nil)
 (setq org-agenda-include-deadlines t)
 (setq org-agenda-dim-blocked-tasks 'invisible)
+(setq org-latex-packages-alist '(("margin=1in" "geometry" nil)))
 (setq org-todo-keywords '((sequence
 		           "TODO"
                            "PROJ"
@@ -58,8 +59,9 @@
     [[file:../../20200904120153-album_of_the_week.org][Album of the Week]]
    - [ ] Workout related Stretch
    - [ ] Ergonomic stretch
+   - [ ] Bruxism stretch
    - [ ] Clean out phone.org
-    [[file:../phone.org][phone.org   ]]
+    [[file:../../phone.org][phone.org   ]]
    - [ ] Restructure TODOs
    - [ ] journal and day plan on other side
      - plan tips:

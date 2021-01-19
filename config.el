@@ -58,9 +58,7 @@
 ;; Org mode from
 ;; https://emacs.christianbaeuerlein.com/my-org-config.html
 (defun jparcill/after-org-mode-load ()
-  (olivetti-mode)
-  (setq olivetti-body-width 0.7)
-  (display-line-numbers-mode -1)
+  (writeroom-mode)
   )
 
 (add-hook! 'org-mode-hook 'jparcill/after-org-mode-load)
@@ -154,11 +152,6 @@
   (tab-bar-history-mode)
   )
 
-(use-package! mathpix
-  :config
-  (jparcill/mathpix-settings)
-  (setq mathpix-screenshot-method "scrot -s %s")
-  )
 
 (use-package! calfw-org
   :after calfw
