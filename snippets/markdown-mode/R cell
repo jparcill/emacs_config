@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: R cell
+# key: <rcell
+# --
+
+```\{r warning = FALSE\}
+$1
+```

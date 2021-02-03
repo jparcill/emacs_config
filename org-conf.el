@@ -2,7 +2,8 @@
 (setq org-export-with-section-numbers nil)
 (setq org-agenda-include-deadlines t)
 (setq org-agenda-dim-blocked-tasks 'invisible)
-(setq org-latex-packages-alist '(("margin=1in" "geometry" nil)))
+(setq org-latex-packages-alist '(("margin=1in" "geometry" nil))) ;; adjusting the margins of latex output
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.5)) ;; making latex previews larger
 (setq org-todo-keywords '((sequence
 		           "TODO"
                            "PROJ"
@@ -56,12 +57,10 @@
 ** Checklist
    - [ ] Make bed meditatively and 5 min clean
    - [ ] Put on this week's album
-    [[file:../../20200904120153-album_of_the_week.org][Album of the Week]]
    - [ ] Workout related Stretch
    - [ ] Ergonomic stretch
    - [ ] Bruxism stretch
    - [ ] Clean out phone.org
-    [[file:../../phone.org][phone.org   ]]
    - [ ] Restructure TODOs
    - [ ] journal and day plan on other side
      - plan tips:

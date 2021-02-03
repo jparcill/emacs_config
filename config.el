@@ -10,6 +10,9 @@
 (setq org-file-path "~/Sync/Org/")
 (setq work-path "~/Org/")
 
+;; Private
+;; --------
+(load! "private.el")
 
 ;; Machine dependent-code
 ;; ----------------------
@@ -52,7 +55,6 @@
 
 ;; Packages
 ;; --------
-(load! "private.el")
 
 (after! org (load! "org-conf.el"))
 ;; Org mode from
@@ -417,6 +419,7 @@
 (global-set-key (kbd "C-c s p") 'counsel-spotify-previous)
 (global-set-key (kbd "C-c s /") 'counsel-spotify-search-album)
 (global-set-key (kbd "C-c s ?") 'counsel-spotify-search-track)
+(global-set-key (kbd "C-c s l") 'counsel-spotify-search-playlist)
 
 (evil-define-key 'normal org-mode-map
   (kbd "SPC m ;") 'org-babel-execute-src-block
