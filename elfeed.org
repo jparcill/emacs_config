@@ -16,6 +16,7 @@
 ** Math :math:
 *** Statistics :stats:
 **** http://www.stochasticlifestyle.com/feed/
+**** https://mathbabe.org/feed/
 *** Machine Learning :ml:
 **** https://jack-clark.net/
 **** https://medium.com/feed/@racheltho

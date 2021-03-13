@@ -1,5 +1,7 @@
 ;;; machine_specific/linux_pc.el -*- lexical-binding: t; -*-
 
+
+(add-to-list 'exec-path "/home/jparcill/.local/bin")
 ;; EXWM
 (use-package! exwm
   :config
@@ -17,7 +19,7 @@
 
   (exwm-input-set-key (kbd "s-w s") #'evil-window-split)
   (exwm-input-set-key (kbd "s-w v") #'evil-window-vsplit)
-  (exwm-input-set-key (kbd "s-w u") #'tab-bar-history-back)
+  (exwm-input-set-key (kbd "s-w u") #'jparcill/hydra-window-undo/body)
 
   (exwm-input-set-key (kbd "s-w m m") #'doom/window-maximize-buffer)
   (exwm-input-set-key (kbd "s-w d") #'evil-window-delete)

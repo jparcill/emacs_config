@@ -34,7 +34,7 @@
 
 ;;theme
 (add-to-list 'custom-theme-load-path "~/.doom.d/themes/")
-(setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-nord)
 ;; nightmode theme
 (run-at-time "21:00" nil (lambda ()
                            ;;(progn (load-theme 'doom-rouge)
@@ -57,15 +57,14 @@
 ;; --------
 
 (after! org (load! "org-conf.el"))
-;; Org mode from
-;; https://emacs.christianbaeuerlein.com/my-org-config.html
-(defun jparcill/after-org-mode-load ()
-  (writeroom-mode)
-  )
 
 (add-hook! 'org-mode-hook 'jparcill/after-org-mode-load)
 
-(remove-hook! 'org-mode-hook #'flyspell-mode)
+(defun jparcill/after-org-mode-load ()
+  (interactive)
+  (setq olivetti-body-width 0.8)
+  (olivetti-mode)
+  )
 
 
 (after! ranger
@@ -148,11 +147,6 @@
           ("DONE"  . ,(face-foreground 'success))))
   )
 
-(use-package! tab-bar
-  :config
-  (tab-bar-mode)
-  (tab-bar-history-mode)
-  )
 
 
 (use-package! calfw-org
@@ -191,12 +185,6 @@
   (setq org-journal-carryover-items "")
   )
 
-(use-package! org-krita
-  :defer
-  :config
-  (setq org-krita-template-path "/home/jparcill/.doom.d/custom_packages/org-krita-0.1.1/resources/template.kra")
-  )
-
 (use-package! org-agenda
   :defer
   :init
@@ -205,6 +193,8 @@
                           (concat org-file-path "monthly_habits.org")
                           (concat org-file-path "quarterly_habits.org")
                           (concat org-file-path "personal.org")
+                          (concat org-file-path "taxes.org")
+                          (concat org-file-path "reading_list.org")
                           (concat org-file-path "school.org")
                           (concat org-file-path "daily_habits.org")
                           (concat org-file-path "weekly_habits.org")
@@ -212,7 +202,7 @@
                           (concat org-file-path "someday.org")
                           work-path
                           (concat org-file-path "projects/2021/")
-                          (concat org-file-path "journal/2021/")))
+                          org-journal-dir))
 
   :config
   (setq org-habit-show-habits-only-for-today t)
@@ -240,7 +230,8 @@
   (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
   (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
 
-  (setq org-agenda-custom-commands '(("z" "Super work view"
+  (setq org-agenda-custom-commands '(
+                                     ("r" "Main View"
                                       ((agenda "" ((org-agenda-span 'day)
                                                    (org-agenda-start-day "+0d")
                                                    (org-agenda-overriding-header "")
@@ -253,45 +244,31 @@
                                                        :todo "TODAY")))))
                                        (alltodo "" ((org-agenda-overriding-header "")
                                                     (org-super-agenda-groups
-                                                     '((:discard (:todo "RD"))
-                                                       (:discard (:todo "TMPDROP"))
+                                                     '(
+                                                       (:discard (:habit))
+                                                       (:todo "PROJ")
                                                        (:todo "PROG")
                                                        (:todo "NEXT")
-                                                       (:name "Important" :priority "A")
                                                        (:todo "WAIT")
-                                                       (:name "Work" :tag "work")
-                                                       (:name "School" :tag "school")
-                                                       (:name "Hobby" :tag "hobby")
                                                        (:todo "RDNOTE")
+                                                       (:name "Important" :priority "A")
+                                                       (:todo "TODO")
                                                        (:todo "GOAL")
-                                                       (:discard (:habit))
+                                                       (:discard (:todo "IDEA"))
+                                                       (:discard (:todo "RD"))
+                                                       (:discard (:todo "TMPDROP"))
                                                        (:discard (:todo "SOMEDAY"))
                                                        ))))))
-                                     ("r" "Main View"
-                                     ((agenda "" ((org-agenda-span 'day)
-                                                  (org-agenda-start-day "+0d")
-                                                  (org-agenda-overriding-header "")
-                                                  (org-super-agenda-groups
-                                                   '((:name "Today"
-                                                      :time-grid t
-                                                      :date today
-                                                      :order 1
-                                                      :scheduled today
-                                                      :todo "TODAY")))))
-                                      (alltodo "" ((org-agenda-overriding-header "")
-                                                   (org-super-agenda-groups
-                                                    '(
-                                                      (:discard (:habit))
-                                                      (:todo "PROJ")
-                                                      (:todo "PROG")
-                                                      (:todo "NEXT")
-                                                      (:todo "WAIT")
-                                                      (:name "Important" :priority "A")
-                                                      (:todo "TODO")
-                                                      (:todo "GOAL")
-                                                      (:discard (:todo "IDEA"))
-                                                      (:discard (:todo "SOMEDAY"))
-                                                      ))))))))
+
+                                     ("w" "Someday and Idea"
+                                      ((alltodo "" ((org-agenda-overriding-header "")
+                                                    (org-super-agenda-groups
+                                                     '(
+                                                       (:todo "IDEA")
+                                                       (:todo "SOMEDAY")
+                                                       (:discard (:not "IDEA"))
+                                                       )
+                                                     )))))))
 
 
   :config
@@ -322,8 +299,8 @@
 (after! hydra
   (defhydra jparcill/hydra-window-undo ()
     "undo"
-    ("u" tab-bar-history-back "undo")
-    ("U" tab-bar-history-forward "redo")
+    ("u" winner-undo "undo")
+    ("U" winner-redo "redo")
     )
 
 
@@ -371,6 +348,14 @@
 
 ;; Custom Functions
 ;;
+;; Function for clicking on the nearest file link above my cursor
+;; Useful for me personally as I leave file links around in my org file
+(defun jparcill/click-on-file-above ()
+    (interactive)
+     (progn (search-backward "dir: [[file:")
+            (+org/dwim-at-point)
+            )
+    )
 ;; Uploading Images to Journal
 (defun jparcill/img-path-string (date)
   (interactive)
@@ -384,6 +369,20 @@
              )
   )
 
+
+;; https://github.com/goktug97/yet-another-spotify-lyrics
+(defun jparcill/spotify-lyrics ()
+  (interactive)
+  (let ((string (shell-command-to-string "~/.local/bin/spotify-lyrics-once")))
+    (get-buffer-create "lyrics-buffer")
+    (switch-to-buffer-other-window "lyrics-buffer")
+    (with-current-buffer "lyrics-buffer"
+      (goto-char (point-max))
+      (erase-buffer)
+      (insert string)
+      (goto-line 1))))
+
+
 (defun jparcill/upload-imgs-to-journal ()
   "I use this function to attach images to the journal for the date that I choose"
   (interactive)
@@ -393,7 +392,7 @@
     (append-to-file
      (concat "* Images\n" (jparcill/img-path-string date))
      nil
-     (concat org-file-path (concat "journal/" (concat date ".org")))
+     (concat org-journal-dir (concat date ".org"))
      )
     )
   )
@@ -432,14 +431,8 @@
   (kbd "ESC") 'hydra-keyboard-quit)
 
 
-;; Replacing doom's default: workspaces with tab-bar from Emacs 27.1
 (evil-define-key* 'normal 'global
   (kbd "SPC g C-g") #'counsel-git-grep
-  (kbd "SPC TAB \]") #'tab-bar-switch-to-next-tab
-  (kbd "SPC TAB \[") #'tab-bar-switch-to-prev-tab
-  (kbd "SPC TAB n") #'tab-bar-new-tab
-  (kbd "SPC TAB d") #'tab-bar-close-tab
-  (kbd "SPC TAB r") #'tab-bar-rename-tab
   )
 
 (map! :leader

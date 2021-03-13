@@ -34,16 +34,6 @@
             (lambda ()
               (exwm-workspace-rename-buffer exwm-class-name)))
 
-  ;; Show time
-  (setq display-time-default-load-average nil)
-  (setq display-time-day-and-date t)
-  (display-time-mode t)
-
-  ;; System tray
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-  (setq exwm-systemtray-height 16)
-
   ;; Global keybindings.
   (unless (get 'exwm-input-global-keys 'saved-value)
     (setq exwm-input-global-keys

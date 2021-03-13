@@ -19,7 +19,6 @@
 (package! base16-theme)
 (package! olivetti)
 (package! counsel-spotify)
-(package! winner :disable t)
 (package! lsp-julia :recipe (:host github :repo "non-jedi/lsp-julia"))
 (package! exwm-edit)
 (package! nov)

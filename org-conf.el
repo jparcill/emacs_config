@@ -60,7 +60,10 @@
    - [ ] Workout related Stretch
    - [ ] Ergonomic stretch
    - [ ] Bruxism stretch
+   - [ ] Yesterday's journal if not done
+   - [ ] Upload any images to journal
    - [ ] Clean out phone.org
+   - [ ] Review whole month
    - [ ] Restructure TODOs
    - [ ] journal and day plan on other side
      - plan tips:
@@ -69,9 +72,6 @@
          - relaxing reading
          - article reading
          - art
-   - [ ] Review whole month
-   - [ ] Yesterday's journal if not done
-   - [ ] Upload any images to journal
    - [ ] Refresh phone orgzly
 ** Looking Forward To %?
 ** Day Plan
