@@ -194,6 +194,7 @@
                           (concat org-file-path "quarterly_habits.org")
                           (concat org-file-path "personal.org")
                           (concat org-file-path "taxes.org")
+                          (concat org-file-path "birthdays_and_important_days.org")
                           (concat org-file-path "reading_list.org")
                           (concat org-file-path "school.org")
                           (concat org-file-path "daily_habits.org")
@@ -348,14 +349,17 @@
 
 ;; Custom Functions
 ;;
+
+;;
+
 ;; Function for clicking on the nearest file link above my cursor
 ;; Useful for me personally as I leave file links around in my org file
 (defun jparcill/click-on-file-above ()
-    (interactive)
-     (progn (search-backward "dir: [[file:")
-            (+org/dwim-at-point)
-            )
-    )
+  (interactive)
+  (progn (search-backward "dir: [[file:")
+         (+org/dwim-at-point)
+         )
+  )
 ;; Uploading Images to Journal
 (defun jparcill/img-path-string (date)
   (interactive)
@@ -382,6 +386,18 @@
       (insert string)
       (goto-line 1))))
 
+;; Function to export a temporary pdf
+(defun jparcill/tmp-org-to-pdf ()
+  (interactive)
+  (let ((new-file-name (concat "/tmp/" (buffer-name) ".pdf")))
+    (start-process-shell-command
+     (concat (buffer-name) "-tmp-pdf")
+     (concat (buffer-name) "-tmp-pdf")
+     (concat "pandoc -o " new-file-name " " (buffer-file-name)))
+    (sleep 0.5)
+    (find-file new-file-name)
+    )
+  )
 
 (defun jparcill/upload-imgs-to-journal ()
   "I use this function to attach images to the journal for the date that I choose"

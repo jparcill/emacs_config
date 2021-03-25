@@ -55,6 +55,8 @@
         ("m" "Morning Journal entry" entry (function jparcill/org-journal-find-location)
          "* Morning Entry
 ** Checklist
+   - [ ] Wash face
+   - [ ] Set timer
    - [ ] Make bed meditatively and 5 min clean
    - [ ] Put on this week's album
    - [ ] Workout related Stretch
@@ -117,7 +119,3 @@
 
 (setq org-log-done 'time)
 
-
-(load!
- "~/.doom.d/custom_packages/org-krita-0.1.1/org-krita.el"
- )
