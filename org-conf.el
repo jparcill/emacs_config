@@ -1,5 +1,7 @@
 ;;; org_conf.el -*- lexical-binding: t; -*-
 (setq org-export-with-section-numbers nil)
+
+(setq org-display-remote-inline-images 'download)
 (setq org-agenda-include-deadlines t)
 (setq org-agenda-dim-blocked-tasks 'invisible)
 (setq org-latex-packages-alist '(("margin=1in" "geometry" nil))) ;; adjusting the margins of latex output
@@ -33,6 +35,34 @@
                           ))
 
 
+;; Org Superstar
+;;
+;;
+;;
+(setq org-superstar-remove-leading-stars t)
+(setq org-superstar-headline-bullets-list '("" "✿" "✽")) ;; '("🞛" "◉" "○" "▷")
+
+;;https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
+;;
+;;(set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
+;;;; Low levels are unimportant => no scaling
+;;(set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
+;;(set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
+;;(set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
+;;(set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
+;;;; Top ones get scaled the same as in LaTeX (\large, \Large, \LARGE)
+;;(set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.2) ;\large
+;;(set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.44) ;\Large
+;;(set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.728) ;\LARGE
+;;;; Only use the first 4 styles and do not cycle.
+;;(setq org-cycle-level-faces nil)
+;;(setq org-n-level-faces 4)
+
+
+;;(setq org-superstar-item-bullet-alist
+;;      '((?+ . ?🌹)
+;;        (?* . ?🌻)
+;;        (?- . ?🌼)))
 
 (setq org-capture-templates
       `(
@@ -57,11 +87,11 @@
 ** Checklist
    - [ ] Wash face
    - [ ] Set timer
+   - [ ] Bruxism stretch
    - [ ] Make bed meditatively and 5 min clean
    - [ ] Put on this week's album
    - [ ] Workout related Stretch
    - [ ] Ergonomic stretch
-   - [ ] Bruxism stretch
    - [ ] Yesterday's journal if not done
    - [ ] Upload any images to journal
    - [ ] Clean out phone.org
@@ -79,7 +109,7 @@
 ** Day Plan
 ** Determinations :determ:" :empty-lines 1)
         ("n" "Night Journal entry" entry (function jparcill/org-journal-find-location)
-         "* My Day\n%U")
+         "* Today's Learnings\n* My Day\n%U")
         ))
 
 
@@ -118,4 +148,3 @@
 (setq org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("*" . "+") ("1." . "a.")))
 
 (setq org-log-done 'time)
-

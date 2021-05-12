@@ -35,7 +35,7 @@ determine the exact padding."
 
   ;; name        default   256       16
   ((bg         '("#2f98d2" nil       nil           ))
-   (bg-alt     '("#2073a1" nil       nil           ))
+   (bg-alt     '("#2c92c9" nil       nil           ))
    (base0      '("#1e385c" "black"   "black"       ))
    (base1      '("#284b7b" "#1e1e1e" "brightblack" ))
    (base2      '("#325d9a" "#2e2e2e" "brightblack" ))
@@ -45,22 +45,23 @@ determine the exact padding."
    (base6      '("#93b2dc" "#6b6b6b" "brightblack" ))
    (base7      '("#b2c8e6" "#979797" "brightblack" ))
    (base8      '("#d1def0" "#dfdfdf" "white"       ))
-   (fg-alt     '("#B5B2Bd" "#2d2d2d" "white"       ))
-   (fg         '("#F8F8F0" "#bfbfbf" "brightwhite" ))
+   (fg-alt     '("#d1def0" "#2d2d2d" "white"       ))
+   (fg         '("#f3efe0" "#bfbfbf" "brightwhite" ))
 
-   (grey       '("#656565" "#515154" "brightblack"  ))
-   (red        '("#e38678" "#a1687b" "red"          ))
-   (orange     '("#f69865" "#E6C000" "brightred"    ))
-   (green      '("#cbfa8d" "#C2FFDF" "green"        ))
-   (alt-green  '("#548c2f" "#C2FFDF" "green"        ))
+   (grey       '("#498caf" "#515154" "brightblack"  ))
+   (red        '("#fc7f6c" "#a1687b" "red"          ))
+   (orange     '("#f9ae3e" "#E6C000" "brightred"    ))
+   (green      '("#cef98d" "#C2FFDF" "green"        ))
+   (alt-green  '("#a7f2c5" "#C2FFDF" "green"        ))
    (dark-green '("#2c6b34" "#C2FFDF" "green"        ))
    (yellow     '("#f9e10a" "#f9e10a" "yellow"       ))
+   (alt-yellow '("#fcf29c" "#f9e10a" "yellow"       ))
    (blue       '("#bee3e1" "#bee3e1" "brightblue"   ))
    (teal       '("#47bed2" "#47bed2" "brightgreen"  ))
    (dark-blue  '("#1244c6" "#1244c6" "blue"         ))
    (magenta    '("#f9b6c6" "#c45385" "magenta"      ))
-   (violet     '("#b08ea2" "#C5A3FF" "brightmagenta"))
-   (cyan       '("#96CBFE" "#C2FFDF" "brightcyan"   ))
+   (violet     '("#DEC0F1" "#C5A3FF" "brightmagenta"))
+   (cyan       '("#73e8dc" "#C2FFDF" "brightcyan"   ))
    (dark-cyan  '("#204052" "#204052" "cyan"         ))
 
    ;; face categories -- required for all themes
@@ -68,22 +69,22 @@ determine the exact padding."
    (vertical-bar   (doom-darken base6 0.5))
    (selection      teal)
    (builtin        blue)
-   (comments       (if doom-wonder-egg-brighter-comments dark-blue blue))
-   (doc-comments   cyan)
-   (constants      cyan)
+   (comments       (if doom-wonder-egg-brighter-comments base8 base6))
+   (doc-comments   base7)
+   (constants      magenta)
    (functions      yellow)
-   (keywords       green)
+   (keywords       alt-green)
    (methods        yellow)
-   (operators      orange)
-   (type           green)
-   (strings        yellow)
-   (variables      magenta)
-   (numbers        cyan)
+   (operators      violet)
+   (type           alt-green)
+   (strings        alt-yellow)
+   (variables      alt-green)
+   (numbers        magenta)
    (region         base3)
    (error          red)
    (warning        yellow)
    (success        green)
-   (vc-modified    orange)
+   (vc-modified    violet)
    (vc-added       green)
    (vc-deleted     red)
 
@@ -95,7 +96,7 @@ determine the exact padding."
       (if (integerp doom-wonder-egg-padded-modeline) doom-wonder-egg-padded-modeline 4)))
 
    (modeline-fg     nil)
-   (modeline-fg-alt base5)
+   (modeline-fg-alt base8)
 
    (modeline-bg
     (if -modeline-bright
@@ -119,7 +120,7 @@ determine the exact padding."
 
    (font-lock-comment-face
     :foreground comments
-    :background (if doom-wonder-egg-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-wonder-egg-comment-bg base4))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
@@ -167,7 +168,7 @@ determine the exact padding."
    (tooltip              :background bg-alt :foreground fg)
    ;; --- major-mode faces -------------------
    ;; css-mode / scss-mode
-   (css-proprietary-property :foreground orange)
+   (css-proprietary-property :foreground violet)
    (css-property             :foreground green)
    (css-selector             :foreground blue)
 
@@ -185,13 +186,13 @@ determine the exact padding."
 
    ;; outline (affects org-mode)
    ((outline-1 &override) :foreground magenta)
-   ((outline-2 &override) :foreground base8)
-   ((outline-3 &override) :foreground blue)
+   ((outline-2 &override) :foreground alt-green)
+   ((outline-3 &override) :foreground alt-yellow)
    ((outline-4 &override) :foreground magenta)
-   ((outline-5 &override) :foreground base8)
-   ((outline-6 &override) :foreground blue)
+   ((outline-5 &override) :foreground alt-green)
+   ((outline-6 &override) :foreground alt-yellow)
    ((outline-7 &override) :foreground magenta)
-   ((outline-8 &override) :foreground base7)
+   ((outline-8 &override) :foreground alt-green)
 
    ;; org-mode
    ((org-block &override) :background base4)

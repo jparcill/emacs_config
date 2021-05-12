@@ -6,6 +6,7 @@
 **** https://sachachua.com/blog/feed/
 **** https://planet.emacslife.com/atom.xml
 **** https://emacsnyc.org/atom.xml
+**** https://blog.tecosaur.com/tmio/rss.xml
 *** Languages :lang:
 **** Julia
 ***** https://julialang.org/feed.xml
@@ -20,6 +21,7 @@
 *** Machine Learning :ml:
 **** https://jack-clark.net/
 **** https://medium.com/feed/@racheltho
-
+**** https://medium.com/feed/@lakshmanok
+**** https://sararobinson.dev/feed.xml
 ** Friends :friends:
 *** https://www.blog.allanmukundi.com/feed.xml

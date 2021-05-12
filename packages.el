@@ -14,9 +14,9 @@
 (package! polymode)
 (package! zmq)
 (package! shrface)
+(package! counsel-org-clock)
 (package! exwm-firefox :recipe
   (:host github :repo "ieure/exwm-firefox"))
-(package! base16-theme)
 (package! olivetti)
 (package! counsel-spotify)
 (package! lsp-julia :recipe (:host github :repo "non-jedi/lsp-julia"))

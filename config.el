@@ -27,14 +27,13 @@
 ;; -----------
 ;; Font
 (setq doom-font (font-spec :family "Julia Mono" :size 16)
-      doom-variable-pitch-font (font-spec :family "Bookerly" :size 19))
+      doom-variable-pitch-font (font-spec :family "Libre Baskerville" :size 19))
 
 ;; Linum
 (setq display-line-numbers-type 'relative)
 
 ;;theme
-(add-to-list 'custom-theme-load-path "~/.doom.d/themes/")
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-wonder-egg)
 ;; nightmode theme
 (run-at-time "21:00" nil (lambda ()
                            ;;(progn (load-theme 'doom-rouge)
@@ -344,6 +343,11 @@
     ("L" hydra-move-splitter-right)
 
     ("c" nil))
+
+  (defhydra jparcill/hydra-firefox ()
+    ("b" (browse-url-firefox) "browse-url")
+    ("K" (kill-matching-buffers "firefox") "kill all firefox")
+    )
   )
 
 
@@ -393,8 +397,8 @@
     (start-process-shell-command
      (concat (buffer-name) "-tmp-pdf")
      (concat (buffer-name) "-tmp-pdf")
-     (concat "pandoc -o " new-file-name " " (buffer-file-name)))
-    (sleep 0.5)
+     (concat "pandoc -o " new-file-name " " (buffer-file-name) " --pdf-engine=xelatex"))
+    (sleep-for 1)
     (find-file new-file-name)
     )
   )

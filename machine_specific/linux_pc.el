@@ -38,6 +38,7 @@
   (exwm-input-set-key (kbd "<s-tab> d") #'tab-bar-close-tab)
   (exwm-input-set-key (kbd "<s-tab> r") #'tab-bar-rename-tab)
   (exwm-input-set-key (kbd "s-m") 'jparcill/hydra-window-nav/body)
+  (exwm-input-set-key (kbd "s-s") 'jparcill/hydra-firefox/body)
 
 
   (defun jparcill/tmp-screenshot ()
