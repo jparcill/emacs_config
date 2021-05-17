@@ -34,12 +34,6 @@
 
 ;;theme
 (setq doom-theme 'doom-wonder-egg)
-;; nightmode theme
-(run-at-time "21:00" nil (lambda ()
-                           ;;(progn (load-theme 'doom-rouge)
-                           (start-process-shell-command "redshift" "redshift" "redshift -x; redshift -O 1700")
-                           ))
-
 
 ;; Taken from https://tecosaur.github.io/emacs-config/config.html
 (defun jparcill/doom-modeline-conditional-buffer-encoding ()
@@ -57,13 +51,13 @@
 
 (after! org (load! "org-conf.el"))
 
-(add-hook! 'org-mode-hook 'jparcill/after-org-mode-load)
-
 (defun jparcill/after-org-mode-load ()
   (interactive)
   (setq olivetti-body-width 0.8)
   (olivetti-mode)
   )
+
+(add-hook! 'org-mode-hook 'jparcill/after-org-mode-load)
 
 
 (after! ranger
@@ -275,8 +269,6 @@
   (org-super-agenda-mode)
   )
 
-
-
 ;; Org Roam
 (use-package! org-roam
   :commands (org-roam-insert org-roam-find-file org-roam)
@@ -345,7 +337,11 @@
     ("c" nil))
 
   (defhydra jparcill/hydra-firefox ()
-    ("b" (browse-url-firefox) "browse-url")
+    ("mg" (browse-url-firefox "https://gmail.com") "gmail")
+    ("mm" (browse-url-firefox "https://messenger.com") "messenger")
+    ("el" (browse-url-firefox "https://lichess.org") "lichess")
+    ("ey" (browse-url-firefox "https://youtube.com") "youtube")
+    ("et" (browse-url-firefox "https://twitter.com") "twitter")
     ("K" (kill-matching-buffers "firefox") "kill all firefox")
     )
   )

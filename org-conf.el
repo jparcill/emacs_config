@@ -40,7 +40,7 @@
 ;;
 ;;
 (setq org-superstar-remove-leading-stars t)
-(setq org-superstar-headline-bullets-list '("" "✿" "✽")) ;; '("🞛" "◉" "○" "▷")
+(setq org-superstar-headline-bullets-list '("🌹" "🌻" "🌼")) ;; '("🞛" "◉" "○" "▷")
 
 ;;https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
 ;;
@@ -77,7 +77,7 @@
         ("s" "Someday" entry (file+olp ,(concat org-file-path "someday.org") "Catchall")
          "* SOMEDAY %? \n%U" :empty-lines 1)
         ("e" "Event" entry (file ,(concat org-file-path "personal.org"))
-         "* %? %^T\n%U" :empty-lines 1)
+         "* %? \nSCHEDULED: %^T\n%U" :empty-lines 1)
         ("j" "Journal entry" entry (function jparcill/org-journal-find-location)
          "* NEXT %?\n%U" :empty-lines 1)
         ("k" "Journal sched entry" entry (function jparcill/org-journal-find-location)

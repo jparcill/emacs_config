@@ -23,3 +23,4 @@
 (package! exwm-edit)
 (package! nov)
 (package! mathpix.el :recipe (:host github :repo "jethrokuan/mathpix.el"))
+(package! dap-mode)
