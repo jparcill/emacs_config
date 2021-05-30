@@ -1,4 +1,8 @@
 ;;; machine_specific/linux_pc.el -*- lexical-binding: t; -*-
+;; Font
+(setq doom-font (font-spec :family "Julia Mono" :size 16)
+      doom-variable-pitch-font (font-spec :family "Libre Baskerville" :size 19))
+
 
 
 (add-to-list 'exec-path "/home/jparcill/.local/bin")

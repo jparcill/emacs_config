@@ -18,17 +18,15 @@
 ;; ----------------------
 
 ;; Linux Specific
-(if (equal (string-trim (shell-command-to-string "hostname"))  "jparcill")
-    (load! "./machine_specific/linux_pc.el")
+(cond ((equal (string-trim (shell-command-to-string "hostname"))  "jparcill")
+       (load! "./machine_specific/linux_pc.el"))
+      ((equal (string-trim (shell-command-to-string "hostname")) "localhost")
+       (load! "./machine_specific/phone.el"))
   )
 
 
 ;; Aesthetics
 ;; -----------
-;; Font
-(setq doom-font (font-spec :family "Julia Mono" :size 16)
-      doom-variable-pitch-font (font-spec :family "Libre Baskerville" :size 19))
-
 ;; Linum
 (setq display-line-numbers-type 'relative)
 
