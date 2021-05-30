@@ -31,7 +31,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;;theme
-(setq doom-theme 'doom-wonder-egg)
+(setq doom-theme 'doom-rouge)
 
 ;; Taken from https://tecosaur.github.io/emacs-config/config.html
 (defun jparcill/doom-modeline-conditional-buffer-encoding ()
@@ -337,6 +337,7 @@
   (defhydra jparcill/hydra-firefox ()
     ("mg" (browse-url-firefox "https://gmail.com") "gmail")
     ("mm" (browse-url-firefox "https://messenger.com") "messenger")
+    ("mo" (browse-url-firefox "https://outlook.office.com") "outlook")
     ("el" (browse-url-firefox "https://lichess.org") "lichess")
     ("ey" (browse-url-firefox "https://youtube.com") "youtube")
     ("et" (browse-url-firefox "https://twitter.com") "twitter")

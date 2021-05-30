@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: python cell no session
+# key: <py
+# condition: t
+# --
+#+BEGIN_SRC python :results output :tangle yes :comments org
+$1
+#+END_SRC
