@@ -1,6 +1,8 @@
 # key: schoolworkperiod
 # name: School Work Period
 # --
+
+* `(format-time-string "%Y-%m-%d")`
 ****
 SCHEDULED: `(org-format-time-string (org-time-stamp-format t) (org-current-time 60))`
 ****

@@ -7,8 +7,7 @@
 ;; Device Variables
 ;; ~~~~~~~~~~~~~~~~
 
-(setq org-file-path "~/Sync/Org/")
-(setq work-path "~/Org/")
+(setq org-file-path "/mnt/d/Org/Org/")
 
 ;; Private
 ;; --------
@@ -22,6 +21,8 @@
        (load! "./machine_specific/linux_pc.el"))
       ((equal (string-trim (shell-command-to-string "hostname")) "localhost")
        (load! "./machine_specific/phone.el"))
+      ((equal (string-trim (shell-command-to-string "hostname")) "DESKTOP-6DMJC51")
+       (load! "./machine_specific/windows_pc.el"))
   )
 
 
@@ -109,7 +110,7 @@
 (use-package! deft
   :hook deft-mode-hook
   :init
-  (setq deft-directory "~/Sync/Org/")
+  (setq deft-directory org-file-path)
   (setq deft-recursive t)
   )
 
@@ -176,23 +177,19 @@
   (setq org-journal-carryover-items "")
   )
 
+(add-hook! 'org-journal-mode-hook 'writeroom-mode)
+
 (use-package! org-agenda
   :defer
   :init
   (setq org-agenda-files (list
+                          (concat org-file-path "phone_folder/")
                           (concat org-file-path "projects.org")
-                          (concat org-file-path "monthly_habits.org")
-                          (concat org-file-path "quarterly_habits.org")
-                          (concat org-file-path "personal.org")
                           (concat org-file-path "taxes.org")
-                          (concat org-file-path "birthdays_and_important_days.org")
                           (concat org-file-path "reading_list.org")
-                          (concat org-file-path "school.org")
                           (concat org-file-path "daily_habits.org")
-                          (concat org-file-path "weekly_habits.org")
                           (concat org-file-path "reflections/2021_refl.org")
                           (concat org-file-path "someday.org")
-                          work-path
                           (concat org-file-path "projects/2021/")
                           org-journal-dir))
 
@@ -271,7 +268,7 @@
 (use-package! org-roam
   :commands (org-roam-insert org-roam-find-file org-roam)
   :init
-  (setq org-roam-directory "~/Sync/Org/")
+  (setq org-roam-directory org-file-path)
   (setq org-roam-buffer-width 0.1)
   (map! :leader
         :prefix "n"

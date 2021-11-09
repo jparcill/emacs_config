@@ -40,7 +40,7 @@
 ;;
 ;;
 (setq org-superstar-remove-leading-stars t)
-(setq org-superstar-headline-bullets-list '("🌹" "🌻" "🌼")) ;; '("🞛" "◉" "○" "▷")
+(setq org-superstar-headline-bullets-list '("◉" "○" "▷")) ;; '("🌹" "🌻" "🌼")
 
 ;;https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
 ;;
@@ -66,17 +66,17 @@
 
 (setq org-capture-templates
       `(
-        ("t" "Todo" entry (file ,(concat org-file-path "personal.org"))
+        ("t" "Todo" entry (file ,(concat org-file-path "phone_folder/personal.org"))
          "* TODO %? \n%U" :empty-lines 1)
-        ("d" "Todo deadline" entry (file ,(concat org-file-path "personal.org"))
+        ("d" "Todo deadline" entry (file ,(concat org-file-path "phone_folder/personal.org"))
          "* TODO %? \nDEADLINE: %^T\n%U" :empty-lines 1)
-        ("w" "Wait deadline" entry (file ,(concat org-file-path "personal.org"))
+        ("w" "Wait deadline" entry (file ,(concat org-file-path "phone_folder/personal.org"))
          "* WAIT %? \nDEADLINE: %^T\n%U" :empty-lines 1)
         ("r" "Reading List" entry (file+olp ,(concat org-file-path "reading_list.org") "Catchall")
          "* RD %? \n%U" :empty-lines 1)
         ("s" "Someday" entry (file+olp ,(concat org-file-path "someday.org") "Catchall")
          "* SOMEDAY %? \n%U" :empty-lines 1)
-        ("e" "Event" entry (file ,(concat org-file-path "personal.org"))
+        ("e" "Event" entry (file ,(concat org-file-path "phone_folder/personal.org"))
          "* %? \nSCHEDULED: %^T\n%U" :empty-lines 1)
         ("j" "Journal entry" entry (function jparcill/org-journal-find-location)
          "* NEXT %?\n%U" :empty-lines 1)
@@ -85,25 +85,12 @@
         ("m" "Morning Journal entry" entry (function jparcill/org-journal-find-location)
          "* Morning Entry
 ** Checklist
-   - [ ] Wash face
-   - [ ] Set timer
-   - [ ] Bruxism stretch
-   - [ ] Make bed meditatively and 5 min clean
+   - [[https://www.youtube.com/watch?v=GADW8Nlnc1s]]
    - [ ] Put on this week's album
-   - [ ] Workout related Stretch
-   - [ ] Ergonomic stretch
-   - [ ] Yesterday's journal if not done
-   - [ ] Upload any images to journal
-   - [ ] Clean out phone.org
-   - [ ] Review whole month
-   - [ ] Restructure TODOs
-   - [ ] journal and day plan on other side
-     - plan tips:
-       - don't put mentally straining todos after working out or eating.
-       - mentally chill stuff includes:
-         - relaxing reading
-         - article reading
-         - art
+   - [ ] make bed meditatively and clean (5 min)
+   - [ ] Bruxism, Workout, Ergonomic stretch (5 min)
+   - [ ] Yesterday's journal if not done (5 min)
+   - [ ] Review whole month, and agenda TODOs (5 min)
    - [ ] Refresh phone orgzly
 ** Looking Forward To %?
 ** Day Plan
