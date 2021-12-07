@@ -50,7 +50,7 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        ;; workspaces        ; tab emulation, persistence & separate workspaces
-       zen               ; distraction-free coding or writing
+       ;;zen               ; distraction-free coding or writing
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -84,8 +84,8 @@
 
        :checkers
        ;; syntax              ; tasing you for every semicolon you forget
-       (spell +flyspell)             ; tasing you for misspelling mispelling
-       grammar           ; tasing grammar mistake every you make
+       ;;(spell +flyspell)             ; tasing you for misspelling mispelling
+       ;;grammar           ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
@@ -100,11 +100,11 @@
         +dictionary
         +offline
         +docsets)
-       lsp
+       ;;lsp
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       pdf               ; pdf enhancements
+       ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
@@ -130,13 +130,12 @@
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
-       (ess               ; emacs speaks statistics
-        +lsp)
+       ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       (go +lsp)         ; the hipster dialect
+       ;;(go +lsp)         ; the hipster dialect
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
@@ -158,12 +157,12 @@
         +dragndrop
         +hugo
         +journal
-        +jupyter
+        ;;+jupyter
         +noter
         +pandoc
         +pretty
-        +present
-        +roam
+        ;;+present
+        ;;+roam2
         )
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

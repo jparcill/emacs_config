@@ -4,8 +4,11 @@
 ;;[2019-11-26 Tue]
 ;; My own config functions
 
+(setq gc-cons-threshold (* 50 1000 1000)) ;; https://blog.d46.us/advanced-emacs-startup/
+;;
 ;; Device Variables
 ;; ~~~~~~~~~~~~~~~~
+
 
 (setq org-file-path "/mnt/d/Org/Org/")
 
@@ -64,19 +67,9 @@
   )
 
 (use-package! pdf-tools
-  :defer
+  :defer t
   :config
   (pdf-loader-install)
-  )
-
-(use-package! nov
-  :defer
-  )
-
-(use-package! counsel-spotify
-  :defer
-  :config
-  (jparcill/counsel-spotify-settings)
   )
 
 
@@ -146,13 +139,13 @@
   )
 
 (use-package! vterm
-  :defer
+  :defer t
   :init
   (map! :map vterm-mode-map "C-c C-\\" #'vterm-send-C-c)
   )
 
 (use-package! org-download
-  :defer
+  :defer t
   :init
   ;; Org download
   (setq-default org-download-image-dir (concat org-file-path "img/"))
@@ -165,7 +158,7 @@
 (add-hook! 'dired-mode-hook 'org-download-enable)
 
 (use-package! org-journal
-  :defer
+  :defer t
   :init
   ;; org journal
   (setq org-journal-dir (concat org-file-path "journal/2021/"))
@@ -177,11 +170,12 @@
   (setq org-journal-carryover-items "")
   )
 
-(add-hook! 'org-journal-mode-hook 'writeroom-mode)
+;;(add-hook! 'org-journal-mode-hook 'writeroom-mode)
 
 (use-package! org-agenda
-  :defer
+  :defer t
   :init
+
   (setq org-agenda-files (list
                           (concat org-file-path "phone_folder/")
                           (concat org-file-path "projects.org")
@@ -195,7 +189,8 @@
 
   :config
   (setq org-habit-show-habits-only-for-today t)
-  ;; Org Agenda Files
+  (setq org-agenda-include-deadlines t)
+  (setq org-agenda-dim-blocked-tasks 'invisible)
 
   ;; org agenda
   (setq org-agenda-time-grid
@@ -260,20 +255,19 @@
                                                      )))))))
 
 
-  :config
+  ;;:config
   (org-super-agenda-mode)
   )
 
 ;; Org Roam
 (use-package! org-roam
-  :commands (org-roam-insert org-roam-find-file org-roam)
+  :defer t
   :init
   (setq org-roam-directory org-file-path)
-  (setq org-roam-buffer-width 0.1)
   (map! :leader
         :prefix "n"
-        :desc "Org-Roam-Insert" "i" #'org-roam-insert
-        :desc "Org-Roam-Find"   "/" #'org-roam-find-file
+        :desc "Org-Roam-Insert" "i" #'org-roam-node-insert
+        :desc "Org-Roam-Find"   "/" #'org-roam-node-find
         :desc "Org-Roam-Buffer" "r" #'org-roam)
   )
 
@@ -369,18 +363,6 @@
              )
   )
 
-
-;; https://github.com/goktug97/yet-another-spotify-lyrics
-(defun jparcill/spotify-lyrics ()
-  (interactive)
-  (let ((string (shell-command-to-string "~/.local/bin/spotify-lyrics-once")))
-    (get-buffer-create "lyrics-buffer")
-    (switch-to-buffer-other-window "lyrics-buffer")
-    (with-current-buffer "lyrics-buffer"
-      (goto-char (point-max))
-      (erase-buffer)
-      (insert string)
-      (goto-line 1))))
 
 ;; Function to export a temporary pdf
 (defun jparcill/tmp-org-to-pdf ()
@@ -503,3 +485,5 @@
     (cons 340 "#D6D6D6")
     (cons 360 "#D6D6D6")))
  '(vc-annotate-very-old-color nil))
+
+(setq gc-cons-threshold (* 2 1000 1000)) ;; https://blog.d46.us/advanced-emacs-startup/

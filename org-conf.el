@@ -2,8 +2,6 @@
 (setq org-export-with-section-numbers nil)
 
 (setq org-display-remote-inline-images 'download)
-(setq org-agenda-include-deadlines t)
-(setq org-agenda-dim-blocked-tasks 'invisible)
 (setq org-latex-packages-alist '(("margin=1in" "geometry" nil))) ;; adjusting the margins of latex output
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.5)) ;; making latex previews larger
 (setq org-todo-keywords '((sequence
