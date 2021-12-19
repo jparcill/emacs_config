@@ -4,7 +4,6 @@
 ;;[2019-11-26 Tue]
 ;; My own config functions
 
-(setq gc-cons-threshold (* 50 1000 1000)) ;; https://blog.d46.us/advanced-emacs-startup/
 ;;
 ;; Device Variables
 ;; ~~~~~~~~~~~~~~~~
@@ -46,301 +45,14 @@
 
 (add-hook 'after-change-major-mode-hook #'jparcill/doom-modeline-conditional-buffer-encoding)
 
-
-
-;; Packages
-;; --------
-
-(after! org (load! "org-conf.el"))
-
-(defun jparcill/after-org-mode-load ()
-  (interactive)
-  (setq olivetti-body-width 0.8)
-  (olivetti-mode)
-  )
-
-(add-hook! 'org-mode-hook 'jparcill/after-org-mode-load)
-
-
-(after! ranger
-  (setq ranger-show-hidden t)
-  )
-
-(use-package! pdf-tools
-  :defer t
-  :config
-  (pdf-loader-install)
-  )
-
-
-(use-package! org-noter
-  :after pdf-tools
-  :init
-  (map! :map org-noter-doc-mode-map "i" #'org-noter-insert-note)
-  (map! :map org-noter-notes-mode-map "C-c l i" #'org-noter-insert-note)
-  )
-
-(use-package! ox-hugo
-  :after ox
-  )
-
-(use-package! elfeed-org
-  :after elfeed
-  :config
-  (elfeed-org)
-  (setq rmh-elfeed-org-files (list "~/.doom.d/elfeed.org"))
-  )
-
-(use-package! shrface
-  :after eww
-  :config
-  (shrface-basic)
-  (shrface-trial)
-  (setq shrface-href-versatile t)
-  (add-hook! 'eww-after-render-hook 'shrface-mode)
-  )
-
-(use-package! deft
-  :hook deft-mode-hook
-  :init
-  (setq deft-directory org-file-path)
-  (setq deft-recursive t)
-  )
-
-(use-package! hl-todo
-  :hook (prog-mode . hl-todo-mode)
-  :config
-  (setq hl-todo-keyword-faces
-        `(
-          ("PROJ"  . ,(face-foreground 'error))
-          ("SOMEDAY"  . ,(face-foreground 'warning))
-          ("TODO"  . ,(face-foreground 'warning))
-          ("PROG" . ,(face-foreground 'error))
-          ("NEXT" . ,(face-foreground 'error))
-          ("WAIT" . ,(face-foreground 'warning))
-          ("CANCEL" . ,(face-foreground 'error))
-          ("DELEGATED" . ,(face-foreground 'error))
-          ("IDEA" . ,(face-foreground 'warning))
-          ("GOAL" . ,(face-foreground 'warning))
-          ("DUD" . ,(face-foreground 'error))
-          ("RD" . ,(face-foreground 'warning))
-          ("RDING" . ,(face-foreground 'warning))
-          ("RDNOTE" . ,(face-foreground 'warning))
-          ("TMPDROP" . ,(face-foreground 'warning))
-          ("DROP" . ,(face-foreground 'error))
-          ("FNSHED" . ,(face-foreground 'success))
-          ("DONE"  . ,(face-foreground 'success))))
-  )
-
-
-
-(use-package! calfw-org
-  :after calfw
-  )
-
-(use-package! vterm
-  :defer t
-  :init
-  (map! :map vterm-mode-map "C-c C-\\" #'vterm-send-C-c)
-  )
-
-(use-package! org-download
-  :defer t
-  :init
-  ;; Org download
-  (setq-default org-download-image-dir (concat org-file-path "img/"))
-  (setq-default org-download-method 'directory)
-  (setq-default org-download-screenshot-method "scrot")
-  :config
-  (org-download-enable)
-  )
-
-(add-hook! 'dired-mode-hook 'org-download-enable)
-
-(use-package! org-journal
-  :defer t
-  :init
-  ;; org journal
-  (setq org-journal-dir (concat org-file-path "journal/2021/"))
-  (setq org-journal-file-type 'daily)
-  (setq org-journal-file-format "%Y%m%d.org")
-  (setq org-journal-date-format "%A, %B %d %Y")
-  (setq org-extend-today-until 4)
-  :config
-  (setq org-journal-carryover-items "")
-  )
-
-;;(add-hook! 'org-journal-mode-hook 'writeroom-mode)
-
-(use-package! org-agenda
-  :defer t
-  :init
-
-  (setq org-agenda-files (list
-                          (concat org-file-path "phone_folder/")
-                          (concat org-file-path "projects.org")
-                          (concat org-file-path "taxes.org")
-                          (concat org-file-path "reading_list.org")
-                          (concat org-file-path "daily_habits.org")
-                          (concat org-file-path "reflections/2021_refl.org")
-                          (concat org-file-path "someday.org")
-                          (concat org-file-path "projects/2021/")
-                          org-journal-dir))
-
-  :config
-  (setq org-habit-show-habits-only-for-today t)
-  (setq org-agenda-include-deadlines t)
-  (setq org-agenda-dim-blocked-tasks 'invisible)
-
-  ;; org agenda
-  (setq org-agenda-time-grid
-        (quote
-         ((daily today remove-match)
-          (700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300)
-          "......" "----------------")))
-  )
-;; org-super-agenda
-;; https://www.reddit.com/r/orgmode/comments/erdb40/doomemacs_can_not_make_orgsuperagenda_work/
-(use-package! org-super-agenda
-  :after org-agenda
-  :init
-  ;; for some reason org-agenda evil bindings were being weird with j and k
-  (map! :map org-agenda-keymap "j" #'org-agenda-next-line)
-  (map! :map org-agenda-mode-map "j" #'org-agenda-next-line)
-  (map! :map org-super-agenda-header-map "j" #'org-agenda-next-line)
-  (map! :map org-agenda-keymap "k" #'org-agenda-previous-line)
-  (map! :map org-agenda-mode-map "k" #'org-agenda-previous-line)
-  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
-  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
-  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
-
-  (setq org-agenda-custom-commands '(
-                                     ("r" "Main View"
-                                      ((agenda "" ((org-agenda-span 'day)
-                                                   (org-agenda-start-day "+0d")
-                                                   (org-agenda-overriding-header "")
-                                                   (org-super-agenda-groups
-                                                    '((:name "Today"
-                                                       :time-grid t
-                                                       :date today
-                                                       :order 1
-                                                       :scheduled today
-                                                       :todo "TODAY")))))
-                                       (alltodo "" ((org-agenda-overriding-header "")
-                                                    (org-super-agenda-groups
-                                                     '(
-                                                       (:discard (:habit))
-                                                       (:todo "PROJ")
-                                                       (:todo "PROG")
-                                                       (:todo "NEXT")
-                                                       (:todo "WAIT")
-                                                       (:todo "RDNOTE")
-                                                       (:name "Important" :priority "A")
-                                                       (:todo "TODO")
-                                                       (:todo "GOAL")
-                                                       (:discard (:todo "IDEA"))
-                                                       (:discard (:todo "RD"))
-                                                       (:discard (:todo "TMPDROP"))
-                                                       (:discard (:todo "SOMEDAY"))
-                                                       ))))))
-
-                                     ("w" "Someday and Idea"
-                                      ((alltodo "" ((org-agenda-overriding-header "")
-                                                    (org-super-agenda-groups
-                                                     '(
-                                                       (:todo "IDEA")
-                                                       (:todo "SOMEDAY")
-                                                       (:discard (:not "IDEA"))
-                                                       )
-                                                     )))))))
-
-
-  ;;:config
-  (org-super-agenda-mode)
-  )
-
-;; Org Roam
-(use-package! org-roam
-  :defer t
-  :init
-  (setq org-roam-directory org-file-path)
-  (map! :leader
-        :prefix "n"
-        :desc "Org-Roam-Insert" "i" #'org-roam-node-insert
-        :desc "Org-Roam-Find"   "/" #'org-roam-node-find
-        :desc "Org-Roam-Buffer" "r" #'org-roam)
-  )
-
-
-;; Attempt to remove lag
-(setq key-chord-two-keys-delay 0.7)
-
-
-;; Hydra
-(after! hydra
-  (defhydra jparcill/hydra-window-undo ()
-    "undo"
-    ("u" winner-undo "undo")
-    ("U" winner-redo "redo")
-    )
-
-
-  ;; Adjusted +hydra/window-nav with ivy and undo
-  (defhydra jparcill/hydra-window-nav (:hint nil)
-    "
-          Split: _v_ert  _s_:horz
-         Delete: _d_elete  _o_nly
-  Move Window: _h_:left  _j_:down  _k_:up  _l_:right
-        Buffers: _p_revious  _n_ext  _b_:select  _f_ind-file
-           Undo: _u_ndo _U_:Redo
-         Resize: _H_:splitter left  _J_:splitter down  _K_:splitter up  _L_:splitter right
-           Move: _a_:up  _z_:down
-"
-    ("z" scroll-up-line)
-    ("a" scroll-down-line)
-
-    ("h" windmove-left)
-    ("j" windmove-down)
-    ("k" windmove-up)
-    ("l" windmove-right)
-
-    ("p" previous-buffer)
-    ("n" next-buffer)
-    ("b" ivy-switch-buffer)
-    ("f" find-file)
-
-    ("u" tab-bar-history-back)
-    ("U" tab-bar-history-forward)
-
-    ("s" split-window-below)
-    ("v" split-window-right)
-
-    ("d" delete-window)
-    ("o" delete-other-windows)
-
-    ("H" hydra-move-splitter-left)
-    ("J" hydra-move-splitter-down)
-    ("K" hydra-move-splitter-up)
-    ("L" hydra-move-splitter-right)
-
-    ("c" nil))
-
-  (defhydra jparcill/hydra-firefox ()
-    ("mg" (browse-url-firefox "https://gmail.com") "gmail")
-    ("mm" (browse-url-firefox "https://messenger.com") "messenger")
-    ("mo" (browse-url-firefox "https://outlook.office.com") "outlook")
-    ("el" (browse-url-firefox "https://lichess.org") "lichess")
-    ("ey" (browse-url-firefox "https://youtube.com") "youtube")
-    ("et" (browse-url-firefox "https://twitter.com") "twitter")
-    ("K" (kill-matching-buffers "firefox") "kill all firefox")
-    )
-  )
-
+;; splitting package specific code in order of importance
+(load! "core-func.el")
+;;(load! "secondary-func.el")
+;;(load! "extra-func.el")
 
 ;; Custom Functions
 ;;
 
-;;
 
 ;; Function for clicking on the nearest file link above my cursor
 ;; Useful for me personally as I leave file links around in my org file
@@ -391,6 +103,13 @@
     )
   )
 
+(defun jparcill/go-to-org ()
+  "Go to org directory"
+  (interactive)
+  (find-file org-file-path)
+)
+
+
 (defun jparcill/open-with-xournal ()
   (interactive)
   (start-process-shell-command (f-this-file) (f-this-file) (concat "xournalpp " (f-this-file))))
@@ -400,6 +119,7 @@
 (global-set-key (kbd "C-c b") 'browse-kill-ring)
 (global-set-key (kbd "C-c c") '=calendar)
 (global-set-key (kbd "C-c l m") 'mathpix-screenshot)
+(global-set-key (kbd "C-c o") 'jparcill/go-to-org)
 
 (if (not (equal (string-trim (shell-command-to-string "hostname"))  "jparcill"))
     (global-set-key (kbd "C-c g") 'eww))
