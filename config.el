@@ -19,7 +19,7 @@
 ;; ----------------------
 
 ;; Linux Specific
-(cond ((equal (string-trim (shell-command-to-string "hostname"))  "jparcill")
+(cond ((equal (string-trim (shell-command-to-string "hostname"))  "jared-virtualbox")
        (load! "./machine_specific/linux_pc.el"))
       ((equal (string-trim (shell-command-to-string "hostname")) "localhost")
        (load! "./machine_specific/phone.el"))
