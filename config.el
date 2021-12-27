@@ -45,14 +45,18 @@
 
 (add-hook 'after-change-major-mode-hook #'jparcill/doom-modeline-conditional-buffer-encoding)
 
-;; splitting package specific code in order of importance
+
+;; Package Specific Code In Order Of Importance
+;; ------------------------------------------------------
 (load! "core-func.el")
 ;;(load! "secondary-func.el")
 ;;(load! "extra-func.el")
 
 ;; Custom Functions
+;; ----------------
 ;;
 
+(load! "org-roam-lite.el")
 
 ;; Function for clicking on the nearest file link above my cursor
 ;; Useful for me personally as I leave file links around in my org file
