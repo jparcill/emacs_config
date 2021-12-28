@@ -8,8 +8,13 @@
 
 ;; Linux
 (package! exwm)
+(package! exwm-firefox :recipe
+  (:host github :repo "ieure/exwm-firefox"))
+(package! exwm-edit)
+(package! counsel-spotify)
+(package! mathpix.el :recipe (:host github :repo "jethrokuan/mathpix.el"))
 
-
+;; All
 (package! org-super-agenda)
 (package! browse-kill-ring)
 (package! org-download)

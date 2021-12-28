@@ -1,9 +1,10 @@
 ;;; machine_specific/linux_pc.el -*- lexical-binding: t; -*-
 ;; Font
+;;
 (setq doom-font (font-spec :family "Julia Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "Libre Baskerville" :size 19))
 
-
+(setq org-file-path "/mnt/d/Org/Org/")
 
 (add-to-list 'exec-path "/home/jparcill/.local/bin")
 ;; EXWM
@@ -69,11 +70,11 @@
   :after exwm
   )
 
-(use-package! mathpix
-  :config
-  (jparcill/mathpix-settings)
-  (setq mathpix-screenshot-method "scrot -s %s")
-  )
+;; (use-package! mathpix
+;;   :config
+;;   (jparcill/mathpix-settings)
+;;   (setq mathpix-screenshot-method "scrot -s %s")
+;;   )
 
 
 (add-hook! 'exwm-edit-compose-hook (lambda () (funcall 'markdown-mode)))
