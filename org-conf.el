@@ -2,7 +2,17 @@
 (setq org-export-with-section-numbers nil)
 
 (setq org-display-remote-inline-images 'download)
-(setq org-latex-packages-alist '(("margin=1in" "geometry" nil))) ;; adjusting the margins of latex output
+(setq org-latex-packages-alist '(
+                                 ("margin=1in" "geometry" nil) ;; adjusting the margins of latex output
+;;                                 ("" "minted")
+                                 ))
+;;(setq org-latex-listings 'minted)
+;;(setq org-latex-minted-options '(("frame" "lines")
+;;                                 ("linenos=true")))
+;; (setq org-latex-pdf-process
+;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+;;       )
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.5)) ;; making latex previews larger
 (setq org-todo-keywords '((sequence
 		           "TODO"
@@ -70,9 +80,9 @@
          "* TODO %? \nDEADLINE: %^T\n%U" :empty-lines 1)
         ("w" "Wait deadline" entry (file ,(concat org-file-path "phone_folder/personal.org"))
          "* WAIT %? \nDEADLINE: %^T\n%U" :empty-lines 1)
-        ("r" "Reading List" entry (file+olp ,(concat org-file-path "reading_list.org") "Catchall")
+        ("r" "Reading List" entry (file+olp ,(concat org-file-path "phone_folder/reading_list.org") "Catchall")
          "* RD %? \n%U" :empty-lines 1)
-        ("s" "Someday" entry (file+olp ,(concat org-file-path "someday.org") "Catchall")
+        ("s" "Someday" entry (file+olp ,(concat org-file-path "phone_folder/someday.org") "Catchall")
          "* SOMEDAY %? \n%U" :empty-lines 1)
         ("e" "Event" entry (file ,(concat org-file-path "phone_folder/personal.org"))
          "* %? \nSCHEDULED: %^T\n%U" :empty-lines 1)
@@ -113,11 +123,11 @@
 (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
 
 ;; Refile taken from here: https://www.reddit.com/r/emacs/comments/4366f9/how_do_orgrefiletargets_work/
-(setq org-refile-targets '((nil :maxlevel . 9)
-		           (org-agenda-files :maxlevel . 9)))
-(setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
-(setq org-refile-use-outline-path t)                  ; Show full paths for refiling
-(setq org-refile-allow-creating-parent-nodes (quote confirm))
+;;(setq org-refile-targets '((nil :maxlevel . 9)
+;;		           (org-agenda-files :maxlevel . 9)))
+;;(setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+;;(setq org-refile-use-outline-path t)                  ; Show full paths for refiling
+;;(setq org-refile-allow-creating-parent-nodes (quote confirm))
 (setq org-pretty-entities t)
 
 (setq org-hide-emphasis-markers t)

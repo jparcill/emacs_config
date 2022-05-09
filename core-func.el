@@ -14,7 +14,7 @@
   :defer t
   :init
   ;; org journal
-  (setq org-journal-dir (concat org-file-path "journal/2021/"))
+  (setq org-journal-dir (concat org-file-path "journal/2022/"))
   (setq org-journal-file-type 'daily)
   (setq org-journal-file-format "%Y%m%d.org")
   (setq org-journal-date-format "%A, %B %d %Y")
@@ -58,21 +58,23 @@
 
   (setq org-agenda-files (list
                           (concat org-file-path "phone_folder/")
-                          (concat org-file-path "taxes.org")
-                          (concat org-file-path "reflections/2021_refl.org")
-                          (concat org-file-path "projects/2021/")))
+                          ;;(concat org-file-path "taxes.org")
+                          ;;(concat org-file-path "reflections/2021_refl.org")
+                          ;;(concat org-file-path "projects/2021/")
+                          ))
 
   :config
   (setq org-habit-show-habits-only-for-today t)
   (setq org-agenda-include-deadlines t)
-  (setq org-agenda-dim-blocked-tasks 'invisible)
+  (setq org-agenda-inhibit-startup t)
+  (setq org-agenda-dim-blocked-tasks "invisible")
 
   ;; org agenda
-  (setq org-agenda-time-grid
-        (quote
-         ((daily today remove-match)
-          (700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300)
-          "......" "----------------")))
+  ;;(setq org-agenda-time-grid
+  ;;      (quote
+  ;;       ((daily today remove-match)
+  ;;        (700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300)
+  ;;        "......" "----------------")))
   )
 
 
@@ -80,14 +82,14 @@
   :after org-agenda
   :init
 ;; for some reason org-agenda evil bindings were being weird with j and k
-  (map! :map org-agenda-keymap "j" #'org-agenda-next-line)
-  (map! :map org-agenda-mode-map "j" #'org-agenda-next-line)
-  (map! :map org-super-agenda-header-map "j" #'org-agenda-next-line)
-  (map! :map org-agenda-keymap "k" #'org-agenda-previous-line)
-  (map! :map org-agenda-mode-map "k" #'org-agenda-previous-line)
-  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
-  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
-  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
+ (map! :map org-agenda-keymap "j" #'org-agenda-next-line)
+ (map! :map org-agenda-mode-map "j" #'org-agenda-next-line)
+ (map! :map org-super-agenda-header-map "j" #'org-agenda-next-line)
+ (map! :map org-agenda-keymap "k" #'org-agenda-previous-line)
+ (map! :map org-agenda-mode-map "k" #'org-agenda-previous-line)
+ (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
+ (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
+ (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
 
   (setq org-agenda-custom-commands '(
                                      ("r" "Main View"

@@ -9,7 +9,6 @@
 ;; ~~~~~~~~~~~~~~~~
 
 
-(setq org-file-path "/mnt/d/Org/Org/")
 
 ;; Private
 ;; --------
@@ -34,7 +33,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;;theme
-(setq doom-theme 'doom-rouge)
+(setq doom-theme 'blonde)
 
 ;; Taken from https://tecosaur.github.io/emacs-config/config.html
 (defun jparcill/doom-modeline-conditional-buffer-encoding ()
@@ -49,7 +48,7 @@
 ;; Package Specific Code In Order Of Importance
 ;; ------------------------------------------------------
 (load! "core-func.el")
-;;(load! "secondary-func.el")
+(load! "secondary-func.el")
 ;;(load! "extra-func.el")
 
 ;; Custom Functions
@@ -87,7 +86,7 @@
     (start-process-shell-command
      (concat (buffer-name) "-tmp-pdf")
      (concat (buffer-name) "-tmp-pdf")
-     (concat "pandoc -o " new-file-name " " (buffer-file-name) " --pdf-engine=xelatex"))
+     (concat "pandoc -o " new-file-name " " (buffer-file-name)))
     (sleep-for 1)
     (find-file new-file-name)
     )
@@ -100,7 +99,7 @@
          (replace-regexp-in-string "[^[:digit:]]" "" (org-read-date))))
 
     (append-to-file
-     (concat "* Images\n" (jparcill/img-path-string date))
+     (concat "\n* Images\n" (jparcill/img-path-string date))
      nil
      (concat org-journal-dir (concat date ".org"))
      )
@@ -123,9 +122,11 @@
 (global-set-key (kbd "C-c b") 'browse-kill-ring)
 (global-set-key (kbd "C-c c") '=calendar)
 (global-set-key (kbd "C-c l m") 'mathpix-screenshot)
-(global-set-key (kbd "C-c o") 'jparcill/go-to-org)
+(global-set-key (kbd "C-c o o") 'jparcill/go-to-org)
+(global-set-key (kbd "C-c o n") 'jparcill/org-roam-lite-new-note)
+(global-set-key (kbd "C-c o s") 'jparcill/org-roam-lite-search-org)
 
-(if (not (equal (string-trim (shell-command-to-string "hostname"))  "jparcill"))
+(if (not (equal (string-trim (shell-command-to-string "hostname"))  "jared-virtualbox"))
     (global-set-key (kbd "C-c g") 'eww))
 
 ;; Input images to org journal

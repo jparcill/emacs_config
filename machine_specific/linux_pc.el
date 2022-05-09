@@ -1,12 +1,67 @@
 ;;; machine_specific/linux_pc.el -*- lexical-binding: t; -*-
 ;; Font
 ;;
-(setq doom-font (font-spec :family "Julia Mono" :size 16)
+(setq doom-font (font-spec :family "Julia Mono" :size 18)
       doom-variable-pitch-font (font-spec :family "Libre Baskerville" :size 19))
 
-(setq org-file-path "/mnt/d/Org/Org/")
+(setq org-file-path "~/Sync/Org/")
 
 (add-to-list 'exec-path "/home/jparcill/.local/bin")
+
+;; Hydra
+(after! hydra
+  ;; Adjusted +hydra/window-nav with ivy and undo
+  (defhydra jparcill/hydra-window-nav (:hint nil)
+    "
+           Split: _v_ert  _s_:horz
+          Delete: _d_elete _D_:kill  _o_nly
+   Move Window: _h_:left  _j_:down  _k_:up  _l_:right
+         Buffers: _p_revious  _n_ext  _b_:select  _f_ind-file _m_aximize
+            Undo: _u_ndo _U_:Redo
+            Move: _a_:up  _z_:down
+          Linux: _;_:apps _x_:scratch buffer _F_irefox
+ "
+    ("z" scroll-up-line)
+    ("a" scroll-down-line)
+
+    ("h" windmove-left)
+    ("j" windmove-down)
+    ("k" windmove-up)
+    ("l" windmove-right)
+
+    ("p" previous-buffer)
+    ("n" next-buffer)
+    ("b" ivy-switch-buffer)
+    ("f" find-file)
+    ("m" doom/window-maximize-buffer)
+
+    ("u" tab-bar-history-back)
+    ("U" tab-bar-history-forward)
+
+    ("s" split-window-below)
+    ("v" split-window-right)
+
+    ("d" delete-window)
+    ("D" kill-current-buffer)
+    ("o" delete-other-windows)
+
+    ("x" doom/open-scratch-buffer)
+    (";" counsel-linux-app)
+    ("F" browse-url-firefox)
+
+    ("c" nil))
+
+  (defhydra jparcill/hydra-firefox ()
+    ("mg" (browse-url-firefox "https://gmail.com") "gmail")
+    ("mm" (browse-url-firefox "https://messenger.com") "messenger")
+    ("mo" (browse-url-firefox "https://outlook.office.com") "outlook")
+    ("el" (browse-url-firefox "https://lichess.org") "lichess")
+    ("ey" (browse-url-firefox "https://youtube.com") "youtube")
+    ("et" (browse-url-firefox "https://twitter.com") "twitter")
+    ("K" (kill-matching-buffers "firefox") "kill all firefox")
+    )
+)
+
 ;; EXWM
 (use-package! exwm
   :config
@@ -45,6 +100,7 @@
   (exwm-input-set-key (kbd "s-m") 'jparcill/hydra-window-nav/body)
   (exwm-input-set-key (kbd "s-s") 'jparcill/hydra-firefox/body)
 
+  (exwm-input-set-key (kbd "C-c p") 'jparcill/hydra-window-nav/body)
 
   (defun jparcill/tmp-screenshot ()
       (interactive)
@@ -70,11 +126,13 @@
   :after exwm
   )
 
-;; (use-package! mathpix
-;;   :config
-;;   (jparcill/mathpix-settings)
-;;   (setq mathpix-screenshot-method "scrot -s %s")
-;;   )
+(use-package! mathpix.el
+  :config
+  (jparcill/mathpix-settings)
+  (setq mathpix-screenshot-method "scrot -s %s")
+  :bind
+  ("C-c l m" . mathpix-screenshot)
+  )
 
 
 (add-hook! 'exwm-edit-compose-hook (lambda () (funcall 'markdown-mode)))

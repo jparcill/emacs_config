@@ -16,4 +16,5 @@ xmodmap -e "keycode 9 = grave asciitilde"
 xmodmap -e "add mod4 = Super_L Super_R Hyper_L"
 xmodmap -e "add control = Control_L Control_R"
 xmodmap -e "add shift = Shift_L Shift_R"
+
 syncthing -no-browser

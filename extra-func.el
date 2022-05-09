@@ -37,55 +37,13 @@
 (add-hook! 'dired-mode-hook 'org-download-enable)
 
 
-;; Hydra
-;; (after! hydra
-;;   ;; Adjusted +hydra/window-nav with ivy and undo
-;;   (defhydra jparcill/hydra-window-nav (:hint nil)
-;;     "
-;;           Split: _v_ert  _s_:horz
-;;          Delete: _d_elete  _o_nly
-;;   Move Window: _h_:left  _j_:down  _k_:up  _l_:right
-;;         Buffers: _p_revious  _n_ext  _b_:select  _f_ind-file
-;;            Undo: _u_ndo _U_:Redo
-;;          Resize: _H_:splitter left  _J_:splitter down  _K_:splitter up  _L_:splitter right
-;;            Move: _a_:up  _z_:down
-;; "
-;;     ("z" scroll-up-line)
-;;     ("a" scroll-down-line)
-;;
-;;     ("h" windmove-left)
-;;     ("j" windmove-down)
-;;     ("k" windmove-up)
-;;     ("l" windmove-right)
-;;
-;;     ("p" previous-buffer)
-;;     ("n" next-buffer)
-;;     ("b" ivy-switch-buffer)
-;;     ("f" find-file)
-;;
-;;     ("u" tab-bar-history-back)
-;;     ("U" tab-bar-history-forward)
-;;
-;;     ("s" split-window-below)
-;;     ("v" split-window-right)
-;;
-;;     ("d" delete-window)
-;;     ("o" delete-other-windows)
-;;
-;;     ("H" hydra-move-splitter-left)
-;;     ("J" hydra-move-splitter-down)
-;;     ("K" hydra-move-splitter-up)
-;;     ("L" hydra-move-splitter-right)
-;;
-;;     ("c" nil))
-;;
-;;   (defhydra jparcill/hydra-firefox ()
-;;     ("mg" (browse-url-firefox "https://gmail.com") "gmail")
-;;     ("mm" (browse-url-firefox "https://messenger.com") "messenger")
-;;     ("mo" (browse-url-firefox "https://outlook.office.com") "outlook")
-;;     ("el" (browse-url-firefox "https://lichess.org") "lichess")
-;;     ("ey" (browse-url-firefox "https://youtube.com") "youtube")
-;;     ("et" (browse-url-firefox "https://twitter.com") "twitter")
-;;     ("K" (kill-matching-buffers "firefox") "kill all firefox")
-;;     )
-;;   )
+(use-package! org-roam
+  :defer t
+  :init
+  (setq org-roam-directory org-file-path)
+  (map! :leader
+        :prefix "n"
+        :desc "Org-Roam-Insert" "i" #'org-roam-node-insert
+        :desc "Org-Roam-Find"   "/" #'org-roam-node-find
+        :desc "Org-Roam-Buffer" "r" #'org-roam)
+  )
