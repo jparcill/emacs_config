@@ -81,15 +81,15 @@
 (use-package! org-super-agenda
   :after org-agenda
   :init
-;; for some reason org-agenda evil bindings were being weird with j and k
- (map! :map org-agenda-keymap "j" #'org-agenda-next-line)
- (map! :map org-agenda-mode-map "j" #'org-agenda-next-line)
- (map! :map org-super-agenda-header-map "j" #'org-agenda-next-line)
- (map! :map org-agenda-keymap "k" #'org-agenda-previous-line)
- (map! :map org-agenda-mode-map "k" #'org-agenda-previous-line)
- (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
- (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
- (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
+  ;; for some reason org-agenda evil bindings were being weird with j and k
+  (map! :map org-agenda-keymap "j" #'org-agenda-next-line)
+  (map! :map org-agenda-mode-map "j" #'org-agenda-next-line)
+  (map! :map org-super-agenda-header-map "j" #'org-agenda-next-line)
+  (map! :map org-agenda-keymap "k" #'org-agenda-previous-line)
+  (map! :map org-agenda-mode-map "k" #'org-agenda-previous-line)
+  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
+  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
+  (map! :map org-super-agenda-header-map "k" #'org-agenda-previous-line)
 
   (setq org-agenda-custom-commands '(
                                      ("r" "Main View"
@@ -119,7 +119,9 @@
                                                        (:discard (:todo "RD"))
                                                        (:discard (:todo "TMPDROP"))
                                                        (:discard (:todo "SOMEDAY"))
-                                                       ))))))
+                                                       )))))
+                                      nil ("/tmp/agenda.html")
+                                      )
 
                                      ("w" "Someday and Idea"
                                       ((alltodo "" ((org-agenda-overriding-header "")
@@ -129,9 +131,19 @@
                                                        (:todo "SOMEDAY")
                                                        (:discard (:not "IDEA"))
                                                        )
-                                                     )))))))
+                                                     )))))
 
-
+                                     ("R" "Today's" ((agenda "" ((org-agenda-span 'day)
+                                                                 (org-agenda-start-day "+0d")
+                                                                 (org-agenda-overriding-header "")
+                                                                 (org-super-agenda-groups
+                                                                  '((:name "Today"
+                                                                     :date today
+                                                                     :scheduled today
+                                                                     :todo "TODAY"
+                                                                     :discard (:not (:deadline today))))))))
+                                      nil (concat org-file-path "phone_folder/Tasker/today.txt"))
+                                     ))
   ;;:config
   (org-super-agenda-mode)
   )
