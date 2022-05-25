@@ -120,7 +120,6 @@
                                                        (:discard (:todo "TMPDROP"))
                                                        (:discard (:todo "SOMEDAY"))
                                                        )))))
-                                      nil ("/tmp/agenda.html")
                                       )
 
                                      ("w" "Someday and Idea"
