@@ -24,6 +24,8 @@
        (load! "./machine_specific/phone.el"))
       ((equal (string-trim (shell-command-to-string "hostname")) "DESKTOP-6DMJC51")
        (load! "./machine_specific/windows_pc.el"))
+      ((equal (string-trim (shell-command-to-string "hostname")) "jaredarcilla-macbookpro.local")
+       (load! "./machine_specific/work_mac.el"))
   )
 
 
