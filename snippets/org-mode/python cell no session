@@ -4,5 +4,7 @@
 # condition: t
 # --
 #+BEGIN_SRC python :results output :tangle yes :comments org
+print(
 $1
+)
 #+END_SRC

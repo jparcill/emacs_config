@@ -20,6 +20,8 @@
 ;; Linux Specific
 (cond ((equal (string-trim (shell-command-to-string "hostname"))  "jared-virtualbox")
        (load! "./machine_specific/linux_pc.el"))
+      ((equal (string-trim (shell-command-to-string "hostname"))  "jared-surface")
+       (load! "./machine_specific/linux_pc.el"))
       ((equal (string-trim (shell-command-to-string "hostname")) "localhost")
        (load! "./machine_specific/phone.el"))
       ((equal (string-trim (shell-command-to-string "hostname")) "DESKTOP-6DMJC51")
@@ -35,7 +37,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;;theme
-(setq doom-theme 'blonde)
+(setq doom-theme 'doom-rouge)
 
 ;; Taken from https://tecosaur.github.io/emacs-config/config.html
 (defun jparcill/doom-modeline-conditional-buffer-encoding ()

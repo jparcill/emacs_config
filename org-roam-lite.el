@@ -1,6 +1,7 @@
 ;;; org-roam-lite.el -*- lexical-binding: t; -*-
 
 ;; https://stackoverflow.com/questions/66574715/how-to-get-org-mode-file-title-and-other-file-level-properties-from-an-arbitra
+
 (defun ndk/get-keyword-key-value (kwd)
   (let ((data (cadr kwd)))
     (list (plist-get data :key)
@@ -17,11 +18,12 @@
   (with-current-buffer (find-file-noselect file)
     (ndk/org-current-buffer-get-title)))
 
+(setq org-roam-lite-file-path (concat org-file-path "notes/"))
 
 (defun jparcill/org-roam-lite-new-note ()
   (interactive)
   (let ((note-name (read-string "Name of note:")))
-    (find-file (concat org-file-path  (format-time-string "%Y%m%d%H%M%S" (current-time)) "-" note-name ".org"))
+    (find-file (concat org-roam-lite-file-path  (format-time-string "%Y%m%d%H%M%S" (current-time)) "-" note-name ".org"))
     )
   )
 
