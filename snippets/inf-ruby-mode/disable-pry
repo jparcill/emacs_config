@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: disable-pry
+# uuid: disable-pry-snippet
+# key: dp
+# condition: t
+# --
+disable-pry

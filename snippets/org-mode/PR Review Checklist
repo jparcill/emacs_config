@@ -1,0 +1,12 @@
+# key: nil
+# name: PR Review Checklist
+# uuid: pr-review-checklist
+# --
+`(format-time-string "[%Y-%m-%d %a]")`
+* How would I have done this?
+* Code Notes
+* Is there anything missing?
+* Style
+* Gotchas
+- [ ] race conditions
+- [ ] types

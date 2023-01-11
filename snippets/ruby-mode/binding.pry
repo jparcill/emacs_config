@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: binding.pry
+# uuid: binding-pry
+# key: bp
+# condition: t
+# --
+binding.pry
