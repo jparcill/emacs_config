@@ -2,14 +2,6 @@
 
 (after! org (load! "org-conf.el"))
 
-(defun jparcill/after-org-mode-load ()
-  (interactive)
-  (setq olivetti-body-width 0.8)
-  (olivetti-mode)
-  )
-
-(add-hook! 'org-mode-hook 'jparcill/after-org-mode-load)
-
 (use-package! org-journal
   :defer t
   :init
@@ -68,13 +60,7 @@
   (setq org-agenda-include-deadlines t)
   (setq org-agenda-inhibit-startup t)
   (setq org-agenda-dim-blocked-tasks "invisible")
-
-  ;; org agenda
-  ;;(setq org-agenda-time-grid
-  ;;      (quote
-  ;;       ((daily today remove-match)
-  ;;        (700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300)
-  ;;        "......" "----------------")))
+  (setq org-agenda-span 14)
   )
 
 
@@ -97,12 +83,16 @@
                                                    (org-agenda-start-day "+0d")
                                                    (org-agenda-overriding-header "")
                                                    (org-super-agenda-groups
-                                                    '((:name "Today"
+                                                    '(
+                                                      (:name "Past Habits"
+                                                       :tag "habit"
+                                                       :scheduled past)
+                                                      (:name "Leftover Habits"
+                                                       :tag "habit")
+                                                      (:name "Today"
                                                        :time-grid t
                                                        :date today
-                                                       :order 1
-                                                       :scheduled today
-                                                       :todo "TODAY")))))
+                                                       :scheduled today)))))
                                        (alltodo "" ((org-agenda-overriding-header "")
                                                     (org-super-agenda-groups
                                                      '(
@@ -113,10 +103,11 @@
                                                        (:todo "WAIT")
                                                        (:todo "RDNOTE")
                                                        (:name "Important" :priority "A")
-                                                       (:todo "TODO")
+                                                       (:and (:todo "TODO" :deadline nil :scheduled nil))
                                                        (:todo "GOAL")
-                                                       (:discard (:todo "IDEA"))
+                                                       (:todo "RDING")
                                                        (:discard (:todo "RD"))
+                                                       (:discard (:todo "IDEA"))
                                                        (:discard (:todo "TMPDROP"))
                                                        (:discard (:todo "SOMEDAY"))
                                                        )))))
