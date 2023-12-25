@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Day Envisioned
+# uuid: de
+# key: de
+# condition: t
+# --
+
+** Day Envisioned
+*** Morning
+*** Noon
+*** Evening

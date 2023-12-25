@@ -14,6 +14,9 @@
 ;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
 ;;       )
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.5)) ;; making latex previews larger
+(setq org-icalendar-use-scheduled '(event-if-todo, event-if-todo-not-done, event-if-not-todo, todo-start))
+(setq org-icalendar-with-timestamps t)
+(setq org-icalendar-combined-agenda-file (concat org-file-path "phone_folder/Tasker/combined.ics"))
 (setq org-todo-keywords '((sequence
 		           "TODO"
                            "PROJ"
