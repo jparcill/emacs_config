@@ -110,6 +110,18 @@
     )
   )
 
+;; Still doesn't work with monthly_habits
+(defun jparcill/extract-file-name (filename)
+  "Extracts the desired file name from a given FILENAME string."
+  (replace-regexp-in-string "\\.sync-conflict-[0-9]+-[0-9]+-[A-Z0-9]+\\.org" ".org" filename))
+
+(defun jparcill/ediff-sync-conflict ()
+  (interactive)
+  (let ((curr-file (car (directory-files-recursively org-file-path ".*sync-conflict.*"))))
+    (ediff curr-file (jparcill/extract-file-name curr-file))
+    )
+  )
+
 (defun jparcill/go-to-org ()
   "Go to org directory"
   (interactive)
