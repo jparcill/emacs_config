@@ -133,6 +133,19 @@
                                                                      :todo "TODAY"
                                                                      :discard (:not (:deadline today))))))))
                                       nil (concat org-file-path "phone_folder/Tasker/today.txt"))
+
+                                     ("l" "Location" ((alltodo "" (
+                                                                 (org-agenda-overriding-header "")
+                                                                 (org-super-agenda-groups
+                                                                  '((:name "Ajax"
+                                                                     :tag "ajax"
+                                                                     )
+                                                                    (:name "Office"
+                                                                     :tag "office"
+                                                                     )
+                                                                    (:discard (:anything t))
+                                                                    )))))
+                                      nil (concat org-file-path "phone_folder/Tasker/location.txt"))
                                      ))
   ;;:config
   (org-super-agenda-mode)
