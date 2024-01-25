@@ -143,6 +143,12 @@
                                                                     (:name "Office"
                                                                      :tag "office"
                                                                      )
+                                                                    (:name "Out"
+                                                                     :tag "out"
+                                                                     )
+                                                                    (:name "Home"
+                                                                     :tag "home"
+                                                                     )
                                                                     (:discard (:anything t))
                                                                     )))))
                                       nil (concat org-file-path "phone_folder/Tasker/location.txt"))
