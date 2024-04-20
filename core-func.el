@@ -106,6 +106,8 @@
                                                        (:and (:todo "TODO" :deadline nil :scheduled nil))
                                                        (:todo "GOAL")
                                                        (:todo "RDING")
+                                                       (:and (:todo "TODO" :deadline t))
+                                                       (:discard (:todo "TODO"))
                                                        (:discard (:todo "RD"))
                                                        (:discard (:todo "IDEA"))
                                                        (:discard (:todo "TMPDROP"))
@@ -149,10 +151,18 @@
                                                                     (:name "Home"
                                                                      :tag "home"
                                                                      )
+                                                                    (:name "Work"
+                                                                     :tag "work")
+                                                                    (:name "Location"
+                                                                     :tag "location")
                                                                     (:discard (:anything t))
                                                                     )))))
                                       nil (concat org-file-path "phone_folder/Tasker/location.txt"))
-                                     ))
+
+                                ("k" "Weekly Review"
+                                        ((tags "CLOSED>=\"<-1w>\"")) nil
+                                        (concat org-file-path "phone_folder/Tasker/weekly_closed.txt")
+                                     )))
   ;;:config
   (org-super-agenda-mode)
   )

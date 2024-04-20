@@ -24,6 +24,7 @@
 (package! counsel-org-clock)
 (package! olivetti)
 (package! writeroom-mode)
+(package! gptel)
 ;;(package! mathpix.el :recipe (:host github :repo "jethrokuan/mathpix.el"))
 ;;(package! dap-mode)
 ;; (package! visual-fill-column :recipe
