@@ -3,8 +3,8 @@
 #+STARTUP: inlineimages nofold
 
 * Description
-This is my Doom Emacs config. I mostly use Emacs on my PC running Arch Linux.
+Doom Emacs config
 
-My config is oriented more for data analysis work, writing journals, and general productivity.
+My config is oriented more for coding, data analysis work, writing journals, and general productivity.
 
 You can check out the video where I detail my journalling workflow [[https://youtu.be/3V3wIJgMeqE][here]].
